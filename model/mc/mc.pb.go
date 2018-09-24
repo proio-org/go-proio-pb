@@ -2581,6 +2581,9 @@ func encodeVarintMc(dAtA []byte, offset int, v uint64) int {
 	return offset + 1
 }
 func (m *Particle) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Parent) > 0 {
@@ -2632,6 +2635,9 @@ func (m *Particle) Size() (n int) {
 }
 
 func (m *PackedParticles) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Id) > 0 {
@@ -2734,6 +2740,9 @@ func (m *PackedParticles) Size() (n int) {
 }
 
 func (m *VarintParticle) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Parent) > 0 {
@@ -2785,6 +2794,9 @@ func (m *VarintParticle) Size() (n int) {
 }
 
 func (m *VarintPackedParticles) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Id) > 0 {
@@ -2927,6 +2939,9 @@ func (m *VarintPackedParticles) Size() (n int) {
 }
 
 func (m *MCParameters) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Number != nil {
@@ -2971,6 +2986,9 @@ func (m *MCParameters) Size() (n int) {
 }
 
 func (m *ArrayInt) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Value) > 0 {
@@ -2985,6 +3003,9 @@ func (m *ArrayInt) Size() (n int) {
 }
 
 func (m *ArrayDouble) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Value) > 0 {
@@ -2997,6 +3018,9 @@ func (m *ArrayDouble) Size() (n int) {
 }
 
 func (m *Pythia8Parameters) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.WeightSum != nil {
@@ -3039,6 +3063,9 @@ func (m *Pythia8Parameters) Size() (n int) {
 }
 
 func (m *XYZTF) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.X != nil {
@@ -3060,6 +3087,9 @@ func (m *XYZTF) Size() (n int) {
 }
 
 func (m *XYZTI) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.X != nil {
@@ -3081,6 +3111,9 @@ func (m *XYZTI) Size() (n int) {
 }
 
 func (m *XYZF) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.X != nil {
@@ -3099,6 +3132,9 @@ func (m *XYZF) Size() (n int) {
 }
 
 func (m *XYZI) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.X != nil {
@@ -3199,6 +3235,17 @@ func (m *Particle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Parent) == 0 {
+					m.Parent = make([]uint64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -3260,6 +3307,17 @@ func (m *Particle) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Child) == 0 {
+					m.Child = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -3589,6 +3647,17 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Id) == 0 {
+					m.Id = make([]uint32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint32
 					for shift := uint(0); ; shift += 7 {
@@ -3651,6 +3720,17 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Pdg) == 0 {
+					m.Pdg = make([]int32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v int32
@@ -3715,6 +3795,17 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Status) == 0 {
+					m.Status = make([]uint32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint32
 					for shift := uint(0); ; shift += 7 {
@@ -3769,8 +3860,10 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Mass) == 0 {
-					m.Mass = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Mass) == 0 {
+					m.Mass = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -3818,8 +3911,10 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Px) == 0 {
-					m.Px = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Px) == 0 {
+					m.Px = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -3867,8 +3962,10 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Py) == 0 {
-					m.Py = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Py) == 0 {
+					m.Py = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -3916,8 +4013,10 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Pz) == 0 {
-					m.Pz = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Pz) == 0 {
+					m.Pz = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -3972,6 +4071,17 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Parent1) == 0 {
+					m.Parent1 = make([]uint32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -4035,6 +4145,17 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Parent2) == 0 {
+					m.Parent2 = make([]uint32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint32
 					for shift := uint(0); ; shift += 7 {
@@ -4097,6 +4218,17 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Child1) == 0 {
+					m.Child1 = make([]uint32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint32
 					for shift := uint(0); ; shift += 7 {
@@ -4158,6 +4290,17 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Child2) == 0 {
+					m.Child2 = make([]uint32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -4222,6 +4365,17 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Barcode) == 0 {
+					m.Barcode = make([]int32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v int32
 					for shift := uint(0); ; shift += 7 {
@@ -4277,8 +4431,10 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.X) == 0 {
-					m.X = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.X) == 0 {
+					m.X = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -4326,8 +4482,10 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Y) == 0 {
-					m.Y = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Y) == 0 {
+					m.Y = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -4375,8 +4533,10 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Z) == 0 {
-					m.Z = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Z) == 0 {
+					m.Z = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -4424,8 +4584,10 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.T) == 0 {
-					m.T = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.T) == 0 {
+					m.T = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -4473,8 +4635,10 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Weight) == 0 {
-					m.Weight = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Weight) == 0 {
+					m.Weight = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -4531,6 +4695,17 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Charge) == 0 {
+					m.Charge = make([]int32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v int32
 					for shift := uint(0); ; shift += 7 {
@@ -4586,8 +4761,10 @@ func (m *PackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Energy) == 0 {
-					m.Energy = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Energy) == 0 {
+					m.Energy = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -4694,6 +4871,17 @@ func (m *VarintParticle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Parent) == 0 {
+					m.Parent = make([]uint64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -4755,6 +4943,17 @@ func (m *VarintParticle) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Child) == 0 {
+					m.Child = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -5100,6 +5299,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Id) == 0 {
+					m.Id = make([]uint32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint32
 					for shift := uint(0); ; shift += 7 {
@@ -5162,6 +5372,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Pdg) == 0 {
+					m.Pdg = make([]int32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v int32
@@ -5226,6 +5447,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Status) == 0 {
+					m.Status = make([]uint32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint32
 					for shift := uint(0); ; shift += 7 {
@@ -5287,6 +5519,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Mass) == 0 {
+					m.Mass = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -5350,6 +5593,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Px) == 0 {
+					m.Px = make([]int64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -5415,6 +5669,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Py) == 0 {
+					m.Py = make([]int64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -5479,6 +5744,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Pz) == 0 {
+					m.Pz = make([]int64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -5542,6 +5818,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Parent1) == 0 {
+					m.Parent1 = make([]uint32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint32
 					for shift := uint(0); ; shift += 7 {
@@ -5603,6 +5890,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Parent2) == 0 {
+					m.Parent2 = make([]uint32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -5666,6 +5964,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Child1) == 0 {
+					m.Child1 = make([]uint32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint32
 					for shift := uint(0); ; shift += 7 {
@@ -5727,6 +6036,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Child2) == 0 {
+					m.Child2 = make([]uint32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -5790,6 +6110,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Barcode) == 0 {
+					m.Barcode = make([]int32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v int32
@@ -5855,6 +6186,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.X) == 0 {
+					m.X = make([]int64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -5918,6 +6260,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Y) == 0 {
+					m.Y = make([]int64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -5983,6 +6336,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Z) == 0 {
+					m.Z = make([]int64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -6046,6 +6410,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.T) == 0 {
+					m.T = make([]uint64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -6107,6 +6482,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Weight) == 0 {
+					m.Weight = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -6171,6 +6557,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Charge) == 0 {
+					m.Charge = make([]int32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v int32
 					for shift := uint(0); ; shift += 7 {
@@ -6233,6 +6630,17 @@ func (m *VarintPackedParticles) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Energy) == 0 {
+					m.Energy = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -6697,6 +7105,17 @@ func (m *ArrayInt) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Value) == 0 {
+					m.Value = make([]int32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v int32
 					for shift := uint(0); ; shift += 7 {
@@ -6803,8 +7222,10 @@ func (m *ArrayDouble) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Value) == 0 {
-					m.Value = make([]float64, 0, packedLen/8)
+				var elementCount int
+				elementCount = packedLen / 8
+				if elementCount != 0 && len(m.Value) == 0 {
+					m.Value = make([]float64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64

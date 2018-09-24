@@ -4067,6 +4067,9 @@ func encodeVarintLcio(dAtA []byte, offset int, v uint64) int {
 	return offset + 1
 }
 func (m *IntParams) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Array) > 0 {
@@ -4083,6 +4086,9 @@ func (m *IntParams) Size() (n int) {
 }
 
 func (m *FloatParams) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Array) > 0 {
@@ -4095,6 +4101,9 @@ func (m *FloatParams) Size() (n int) {
 }
 
 func (m *StringParams) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Array) > 0 {
@@ -4110,6 +4119,9 @@ func (m *StringParams) Size() (n int) {
 }
 
 func (m *Params) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Ints) > 0 {
@@ -4158,6 +4170,9 @@ func (m *Params) Size() (n int) {
 }
 
 func (m *ParticleID) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Likelihood != 0 {
@@ -4182,6 +4197,9 @@ func (m *ParticleID) Size() (n int) {
 }
 
 func (m *MCParticle) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Parents) > 0 {
@@ -4242,6 +4260,9 @@ func (m *MCParticle) Size() (n int) {
 }
 
 func (m *SimTrackerHit) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.CellID0 != 0 {
@@ -4278,6 +4299,9 @@ func (m *SimTrackerHit) Size() (n int) {
 }
 
 func (m *TrackerRawData) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.CellID0 != 0 {
@@ -4303,6 +4327,9 @@ func (m *TrackerRawData) Size() (n int) {
 }
 
 func (m *TrackerData) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.CellID0 != 0 {
@@ -4324,6 +4351,9 @@ func (m *TrackerData) Size() (n int) {
 }
 
 func (m *TrackerHit) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.CellID0 != 0 {
@@ -4367,6 +4397,9 @@ func (m *TrackerHit) Size() (n int) {
 }
 
 func (m *TrackerPulse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.CellID0 != 0 {
@@ -4397,6 +4430,9 @@ func (m *TrackerPulse) Size() (n int) {
 }
 
 func (m *TrackerHitPlane) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.CellID0 != 0 {
@@ -4449,6 +4485,9 @@ func (m *TrackerHitPlane) Size() (n int) {
 }
 
 func (m *TrackerHitZCylinder) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.CellID0 != 0 {
@@ -4498,6 +4537,9 @@ func (m *TrackerHitZCylinder) Size() (n int) {
 }
 
 func (m *Track) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Type != 0 {
@@ -4552,6 +4594,9 @@ func (m *Track) Size() (n int) {
 }
 
 func (m *Track_TrackState) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Loc != 0 {
@@ -4585,6 +4630,9 @@ func (m *Track_TrackState) Size() (n int) {
 }
 
 func (m *SimCalorimeterHit) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.CellID0 != 0 {
@@ -4612,6 +4660,9 @@ func (m *SimCalorimeterHit) Size() (n int) {
 }
 
 func (m *SimCalorimeterHit_Contrib) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.MCParticle != 0 {
@@ -4636,6 +4687,9 @@ func (m *SimCalorimeterHit_Contrib) Size() (n int) {
 }
 
 func (m *RawCalorimeterHit) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.CellID0 != 0 {
@@ -4657,6 +4711,9 @@ func (m *RawCalorimeterHit) Size() (n int) {
 }
 
 func (m *CalorimeterHit) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.CellID0 != 0 {
@@ -4690,6 +4747,9 @@ func (m *CalorimeterHit) Size() (n int) {
 }
 
 func (m *Cluster) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Type != 0 {
@@ -4752,6 +4812,9 @@ func (m *Cluster) Size() (n int) {
 }
 
 func (m *RecParticle) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Type != 0 {
@@ -4818,6 +4881,9 @@ func (m *RecParticle) Size() (n int) {
 }
 
 func (m *Vertex) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Primary != 0 {
@@ -4851,6 +4917,9 @@ func (m *Vertex) Size() (n int) {
 }
 
 func (m *Relation) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.From != 0 {
@@ -4950,6 +5019,17 @@ func (m *IntParams) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Array) == 0 {
+					m.Array = make([]int32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v int32
@@ -5056,8 +5136,10 @@ func (m *FloatParams) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Array) == 0 {
-					m.Array = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Array) == 0 {
+					m.Array = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -5724,8 +5806,10 @@ func (m *ParticleID) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Params) == 0 {
-					m.Params = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Params) == 0 {
+					m.Params = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -5832,6 +5916,17 @@ func (m *MCParticle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Parents) == 0 {
+					m.Parents = make([]uint64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -5893,6 +5988,17 @@ func (m *MCParticle) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Children) == 0 {
+					m.Children = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -5967,8 +6073,10 @@ func (m *MCParticle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Vertex) == 0 {
-					m.Vertex = make([]float64, 0, packedLen/8)
+				var elementCount int
+				elementCount = packedLen / 8
+				if elementCount != 0 && len(m.Vertex) == 0 {
+					m.Vertex = make([]float64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -6027,8 +6135,10 @@ func (m *MCParticle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.P) == 0 {
-					m.P = make([]float64, 0, packedLen/8)
+				var elementCount int
+				elementCount = packedLen / 8
+				if elementCount != 0 && len(m.P) == 0 {
+					m.P = make([]float64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -6098,8 +6208,10 @@ func (m *MCParticle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.PEndPoint) == 0 {
-					m.PEndPoint = make([]float64, 0, packedLen/8)
+				var elementCount int
+				elementCount = packedLen / 8
+				if elementCount != 0 && len(m.PEndPoint) == 0 {
+					m.PEndPoint = make([]float64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -6147,8 +6259,10 @@ func (m *MCParticle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Spin) == 0 {
-					m.Spin = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Spin) == 0 {
+					m.Spin = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -6203,6 +6317,17 @@ func (m *MCParticle) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.ColorFlow) == 0 {
+					m.ColorFlow = make([]int32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v int32
@@ -6385,8 +6510,10 @@ func (m *SimTrackerHit) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Pos) == 0 {
-					m.Pos = make([]float64, 0, packedLen/8)
+				var elementCount int
+				elementCount = packedLen / 8
+				if elementCount != 0 && len(m.Pos) == 0 {
+					m.Pos = make([]float64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -6475,8 +6602,10 @@ func (m *SimTrackerHit) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.P) == 0 {
-					m.P = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.P) == 0 {
+					m.P = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -6670,6 +6799,17 @@ func (m *TrackerRawData) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.ADCs) == 0 {
+					m.ADCs = make([]uint32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint32
 					for shift := uint(0); ; shift += 7 {
@@ -6824,8 +6964,10 @@ func (m *TrackerData) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Charges) == 0 {
-					m.Charges = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Charges) == 0 {
+					m.Charges = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -6981,8 +7123,10 @@ func (m *TrackerHit) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Pos) == 0 {
-					m.Pos = make([]float64, 0, packedLen/8)
+				var elementCount int
+				elementCount = packedLen / 8
+				if elementCount != 0 && len(m.Pos) == 0 {
+					m.Pos = make([]float64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -7030,8 +7174,10 @@ func (m *TrackerHit) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Cov) == 0 {
-					m.Cov = make([]float64, 0, packedLen/8)
+				var elementCount int
+				elementCount = packedLen / 8
+				if elementCount != 0 && len(m.Cov) == 0 {
+					m.Cov = make([]float64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -7138,6 +7284,17 @@ func (m *TrackerHit) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.RawHits) == 0 {
+					m.RawHits = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -7304,8 +7461,10 @@ func (m *TrackerPulse) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Cov) == 0 {
-					m.Cov = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Cov) == 0 {
+					m.Cov = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -7499,8 +7658,10 @@ func (m *TrackerHitPlane) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Pos) == 0 {
-					m.Pos = make([]float64, 0, packedLen/8)
+				var elementCount int
+				elementCount = packedLen / 8
+				if elementCount != 0 && len(m.Pos) == 0 {
+					m.Pos = make([]float64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -7548,8 +7709,10 @@ func (m *TrackerHitPlane) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.U) == 0 {
-					m.U = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.U) == 0 {
+					m.U = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -7597,8 +7760,10 @@ func (m *TrackerHitPlane) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.V) == 0 {
-					m.V = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.V) == 0 {
+					m.V = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -7727,6 +7892,17 @@ func (m *TrackerHitPlane) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.RawHits) == 0 {
+					m.RawHits = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -7890,8 +8066,10 @@ func (m *TrackerHitZCylinder) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Pos) == 0 {
-					m.Pos = make([]float64, 0, packedLen/8)
+				var elementCount int
+				elementCount = packedLen / 8
+				if elementCount != 0 && len(m.Pos) == 0 {
+					m.Pos = make([]float64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -7939,8 +8117,10 @@ func (m *TrackerHitZCylinder) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Center) == 0 {
-					m.Center = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Center) == 0 {
+					m.Center = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -8069,6 +8249,17 @@ func (m *TrackerHitZCylinder) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.RawHits) == 0 {
+					m.RawHits = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -8265,6 +8456,17 @@ func (m *Track) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.SubDetHits) == 0 {
+					m.SubDetHits = make([]int32, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v int32
 					for shift := uint(0); ; shift += 7 {
@@ -8358,6 +8560,17 @@ func (m *Track) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Hits) == 0 {
+					m.Hits = make([]uint64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -8419,6 +8632,17 @@ func (m *Track) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Tracks) == 0 {
+					m.Tracks = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -8599,8 +8823,10 @@ func (m *Track_TrackState) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Cov) == 0 {
-					m.Cov = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Cov) == 0 {
+					m.Cov = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -8648,8 +8874,10 @@ func (m *Track_TrackState) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Ref) == 0 {
-					m.Ref = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Ref) == 0 {
+					m.Ref = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -8797,8 +9025,10 @@ func (m *SimCalorimeterHit) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Pos) == 0 {
-					m.Pos = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Pos) == 0 {
+					m.Pos = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -8988,8 +9218,10 @@ func (m *SimCalorimeterHit_Contrib) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.StepPos) == 0 {
-					m.StepPos = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.StepPos) == 0 {
+					m.StepPos = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -9286,8 +9518,10 @@ func (m *CalorimeterHit) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Pos) == 0 {
-					m.Pos = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Pos) == 0 {
+					m.Pos = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -9465,8 +9699,10 @@ func (m *Cluster) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Pos) == 0 {
-					m.Pos = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Pos) == 0 {
+					m.Pos = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -9514,8 +9750,10 @@ func (m *Cluster) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.PosErr) == 0 {
-					m.PosErr = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.PosErr) == 0 {
+					m.PosErr = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -9585,8 +9823,10 @@ func (m *Cluster) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.DirErr) == 0 {
-					m.DirErr = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.DirErr) == 0 {
+					m.DirErr = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -9634,8 +9874,10 @@ func (m *Cluster) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Shape) == 0 {
-					m.Shape = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Shape) == 0 {
+					m.Shape = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -9722,6 +9964,17 @@ func (m *Cluster) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Clusters) == 0 {
+					m.Clusters = make([]uint64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -9784,6 +10037,17 @@ func (m *Cluster) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Hits) == 0 {
+					m.Hits = make([]uint64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -9838,8 +10102,10 @@ func (m *Cluster) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Weights) == 0 {
-					m.Weights = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Weights) == 0 {
+					m.Weights = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -9887,8 +10153,10 @@ func (m *Cluster) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.SubDetEnes) == 0 {
-					m.SubDetEnes = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.SubDetEnes) == 0 {
+					m.SubDetEnes = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -10006,8 +10274,10 @@ func (m *RecParticle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.P) == 0 {
-					m.P = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.P) == 0 {
+					m.P = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -10066,8 +10336,10 @@ func (m *RecParticle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Cov) == 0 {
-					m.Cov = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Cov) == 0 {
+					m.Cov = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -10137,8 +10409,10 @@ func (m *RecParticle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Ref) == 0 {
-					m.Ref = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Ref) == 0 {
+					m.Ref = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -10255,6 +10529,17 @@ func (m *RecParticle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Recs) == 0 {
+					m.Recs = make([]uint64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -10317,6 +10602,17 @@ func (m *RecParticle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Tracks) == 0 {
+					m.Tracks = make([]uint64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -10378,6 +10674,17 @@ func (m *RecParticle) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Clusters) == 0 {
+					m.Clusters = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -10563,8 +10870,10 @@ func (m *Vertex) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Pos) == 0 {
-					m.Pos = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Pos) == 0 {
+					m.Pos = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -10612,8 +10921,10 @@ func (m *Vertex) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Cov) == 0 {
-					m.Cov = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Cov) == 0 {
+					m.Cov = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32
@@ -10661,8 +10972,10 @@ func (m *Vertex) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
-				if len(m.Params) == 0 {
-					m.Params = make([]float32, 0, packedLen/4)
+				var elementCount int
+				elementCount = packedLen / 4
+				if elementCount != 0 && len(m.Params) == 0 {
+					m.Params = make([]float32, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint32

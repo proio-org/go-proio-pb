@@ -1551,6 +1551,9 @@ func encodeVarintEic(dAtA []byte, offset int, v uint64) int {
 	return offset + 1
 }
 func (m *Particle) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Parent) > 0 {
@@ -1598,6 +1601,9 @@ func (m *Particle) Size() (n int) {
 }
 
 func (m *SimHit) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Volumeid != nil {
@@ -1624,6 +1630,9 @@ func (m *SimHit) Size() (n int) {
 }
 
 func (m *EnergyDep) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Mean != nil {
@@ -1650,6 +1659,9 @@ func (m *EnergyDep) Size() (n int) {
 }
 
 func (m *Track) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Segment) > 0 {
@@ -1670,6 +1682,9 @@ func (m *Track) Size() (n int) {
 }
 
 func (m *TrackSegment) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Vertex != nil {
@@ -1719,6 +1734,9 @@ func (m *TrackSegment) Size() (n int) {
 }
 
 func (m *ObservedPos) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Mean != nil {
@@ -1741,6 +1759,9 @@ func (m *ObservedPos) Size() (n int) {
 }
 
 func (m *RandVar) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Dist != nil {
@@ -1757,6 +1778,9 @@ func (m *RandVar) Size() (n int) {
 }
 
 func (m *XYZTD) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.X != nil {
@@ -1778,6 +1802,9 @@ func (m *XYZTD) Size() (n int) {
 }
 
 func (m *XYZTF) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.X != nil {
@@ -1799,6 +1826,9 @@ func (m *XYZTF) Size() (n int) {
 }
 
 func (m *XYZD) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.X != nil {
@@ -1817,6 +1847,9 @@ func (m *XYZD) Size() (n int) {
 }
 
 func (m *XYZF) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.X != nil {
@@ -1917,6 +1950,17 @@ func (m *Particle) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Parent) == 0 {
+					m.Parent = make([]uint64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -1978,6 +2022,17 @@ func (m *Particle) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Child) == 0 {
+					m.Child = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
@@ -2505,6 +2560,17 @@ func (m *EnergyDep) Unmarshal(dAtA []byte) error {
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
 				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Source) == 0 {
+					m.Source = make([]uint64, 0, elementCount)
+				}
 				for iNdEx < postIndex {
 					var v uint64
 					for shift := uint(0); ; shift += 7 {
@@ -2648,6 +2714,17 @@ func (m *Track) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Observation) == 0 {
+					m.Observation = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64

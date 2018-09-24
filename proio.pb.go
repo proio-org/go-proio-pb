@@ -569,6 +569,9 @@ func encodeVarintProio(dAtA []byte, offset int, v uint64) int {
 	return offset + 1
 }
 func (m *BucketHeader) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.NEvents != 0 {
@@ -605,6 +608,9 @@ func (m *BucketHeader) Size() (n int) {
 }
 
 func (m *Event) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Tag) > 0 {
@@ -654,6 +660,9 @@ func (m *Event) Size() (n int) {
 }
 
 func (m *Tag) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if len(m.Entry) > 0 {
@@ -670,6 +679,9 @@ func (m *Tag) Size() (n int) {
 }
 
 func (m *Any) Size() (n int) {
+	if m == nil {
+		return 0
+	}
 	var l int
 	_ = l
 	if m.Type != 0 {
@@ -1454,6 +1466,17 @@ func (m *Tag) Unmarshal(dAtA []byte) error {
 				postIndex := iNdEx + packedLen
 				if postIndex > l {
 					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Entry) == 0 {
+					m.Entry = make([]uint64, 0, elementCount)
 				}
 				for iNdEx < postIndex {
 					var v uint64
