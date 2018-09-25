@@ -46,25 +46,39 @@ func (x BucketHeader_CompType) String() string {
 	return proto.EnumName(BucketHeader_CompType_name, int32(x))
 }
 func (BucketHeader_CompType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_proio_dad06e14e8c79b77, []int{0, 0}
+	return fileDescriptor_proio_5c35261b73d61198, []int{0, 0}
 }
 
+// A BucketHeader describes the contents of the bucket that immediately
+// follows.  Metadata for the stream are also stored here.
 type BucketHeader struct {
-	NEvents              uint64                `protobuf:"varint,1,opt,name=nEvents,proto3" json:"nEvents,omitempty"`
-	BucketSize           uint64                `protobuf:"varint,2,opt,name=bucketSize,proto3" json:"bucketSize,omitempty"`
-	Compression          BucketHeader_CompType `protobuf:"varint,3,opt,name=compression,proto3,enum=proio.proto.BucketHeader_CompType" json:"compression,omitempty"`
-	FileDescriptor       [][]byte              `protobuf:"bytes,5,rep,name=fileDescriptor" json:"fileDescriptor,omitempty"`
-	Metadata             map[string][]byte     `protobuf:"bytes,7,rep,name=metadata" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
-	XXX_unrecognized     []byte                `json:"-"`
-	XXX_sizecache        int32                 `json:"-"`
+	// nEvents stores the number of events that are contained in the bucket.
+	NEvents uint64 `protobuf:"varint,1,opt,name=nEvents,proto3" json:"nEvents,omitempty"`
+	// bucketSize stores the number of bytes in the bucket payload.
+	BucketSize uint64 `protobuf:"varint,2,opt,name=bucketSize,proto3" json:"bucketSize,omitempty"`
+	// compression stores the enumeration of the type of compression used for
+	// this bucket.
+	Compression BucketHeader_CompType `protobuf:"varint,3,opt,name=compression,proto3,enum=proio.proto.BucketHeader_CompType" json:"compression,omitempty"`
+	// fileDescriptor stores uncompressed protobuf FileDescriptorProtos.  It is
+	// a general requirement for compatibility with proio that library
+	// implementations save all FileDescriptorProtos (and their dependencies)
+	// required to describe the data in bucket headers.  The
+	// FileDescriptorProtos must be placed into headers before they are needed.
+	FileDescriptor [][]byte `protobuf:"bytes,5,rep,name=fileDescriptor" json:"fileDescriptor,omitempty"`
+	// metadata describes key-value pairs that are to be associated with all
+	// events that follow in the stream, until the keys are overwritten or the
+	// stream ends.
+	Metadata             map[string][]byte `protobuf:"bytes,7,rep,name=metadata" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
 }
 
 func (m *BucketHeader) Reset()         { *m = BucketHeader{} }
 func (m *BucketHeader) String() string { return proto.CompactTextString(m) }
 func (*BucketHeader) ProtoMessage()    {}
 func (*BucketHeader) Descriptor() ([]byte, []int) {
-	return fileDescriptor_proio_dad06e14e8c79b77, []int{0}
+	return fileDescriptor_proio_5c35261b73d61198, []int{0}
 }
 func (m *BucketHeader) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -128,11 +142,22 @@ func (m *BucketHeader) GetMetadata() map[string][]byte {
 	return nil
 }
 
+// An Event is a container for arbitrary protobuf messages
 type Event struct {
-	Tag                  map[string]*Tag   `protobuf:"bytes,1,rep,name=tag" json:"tag,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value"`
-	NEntries             uint64            `protobuf:"varint,2,opt,name=nEntries,proto3" json:"nEntries,omitempty"`
-	Entry                map[uint64]*Any   `protobuf:"bytes,3,rep,name=entry" json:"entry,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value"`
-	NTypes               uint64            `protobuf:"varint,4,opt,name=nTypes,proto3" json:"nTypes,omitempty"`
+	// tag stores a mapping from human-readable strings to lists of number
+	// entry ids.
+	Tag map[string]*Tag `protobuf:"bytes,1,rep,name=tag" json:"tag,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value"`
+	// nEntries stores the number of entries that have been stored in (not that
+	// are currently stored in) the Event.  This is for a simple way to assign
+	// unique identifiers to new entries.
+	NEntries uint64 `protobuf:"varint,2,opt,name=nEntries,proto3" json:"nEntries,omitempty"`
+	// entry stores a mapping from a numeric entry id to an Any message type.
+	Entry map[uint64]*Any `protobuf:"bytes,3,rep,name=entry" json:"entry,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value"`
+	// nTypes stores the number of types that have been stored in (not that are
+	// currently stored in) the Event.  This is for a simple way to assign
+	// unique identifiers to new types.
+	NTypes uint64 `protobuf:"varint,4,opt,name=nTypes,proto3" json:"nTypes,omitempty"`
+	// type stores a mapping from a numeric type id to a protobuf type string.
 	Type                 map[uint64]string `protobuf:"bytes,5,rep,name=type" json:"type,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
 	XXX_unrecognized     []byte            `json:"-"`
@@ -143,7 +168,7 @@ func (m *Event) Reset()         { *m = Event{} }
 func (m *Event) String() string { return proto.CompactTextString(m) }
 func (*Event) ProtoMessage()    {}
 func (*Event) Descriptor() ([]byte, []int) {
-	return fileDescriptor_proio_dad06e14e8c79b77, []int{1}
+	return fileDescriptor_proio_5c35261b73d61198, []int{1}
 }
 func (m *Event) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -207,6 +232,7 @@ func (m *Event) GetType() map[uint64]string {
 	return nil
 }
 
+// A Tag is a simple list of numeric entry ids.
 type Tag struct {
 	Entry                []uint64 `protobuf:"varint,1,rep,packed,name=entry" json:"entry,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -218,7 +244,7 @@ func (m *Tag) Reset()         { *m = Tag{} }
 func (m *Tag) String() string { return proto.CompactTextString(m) }
 func (*Tag) ProtoMessage()    {}
 func (*Tag) Descriptor() ([]byte, []int) {
-	return fileDescriptor_proio_dad06e14e8c79b77, []int{2}
+	return fileDescriptor_proio_5c35261b73d61198, []int{2}
 }
 func (m *Tag) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -254,6 +280,9 @@ func (m *Tag) GetEntry() []uint64 {
 	return nil
 }
 
+// Any messages are a means of lazy decoding of Event entries.  The type allows
+// proio libraries to create the correct protobuf object for deserialization,
+// and the payload is to be deserialized with the object.
 type Any struct {
 	Type                 uint64   `protobuf:"varint,1,opt,name=type,proto3" json:"type,omitempty"`
 	Payload              []byte   `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty"`
@@ -266,7 +295,7 @@ func (m *Any) Reset()         { *m = Any{} }
 func (m *Any) String() string { return proto.CompactTextString(m) }
 func (*Any) ProtoMessage()    {}
 func (*Any) Descriptor() ([]byte, []int) {
-	return fileDescriptor_proio_dad06e14e8c79b77, []int{3}
+	return fileDescriptor_proio_5c35261b73d61198, []int{3}
 }
 func (m *Any) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1727,9 +1756,9 @@ var (
 	ErrIntOverflowProio   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("proio/proto/proio.proto", fileDescriptor_proio_dad06e14e8c79b77) }
+func init() { proto.RegisterFile("proio/proto/proio.proto", fileDescriptor_proio_5c35261b73d61198) }
 
-var fileDescriptor_proio_dad06e14e8c79b77 = []byte{
+var fileDescriptor_proio_5c35261b73d61198 = []byte{
 	// 506 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x53, 0xd1, 0x6e, 0xd3, 0x3c,
 	0x18, 0x5d, 0xea, 0xa4, 0x4d, 0xbf, 0xf4, 0x9f, 0x22, 0xeb, 0x17, 0x58, 0x1d, 0x44, 0x55, 0x24,
