@@ -29,7 +29,7 @@ type Particle struct {
 	Child []uint64 `protobuf:"varint,2,rep,packed,name=child" json:"child,omitempty"`
 	// PDG code
 	Pdg int32 `protobuf:"zigzag32,3,opt,name=pdg,proto3" json:"pdg,omitempty"`
-	// position in mm and time in ns
+	// vertex in mm
 	Vertex *XYZTF `protobuf:"bytes,4,opt,name=vertex" json:"vertex,omitempty"`
 	// momentum in GeV
 	P *XYZF `protobuf:"bytes,5,opt,name=p" json:"p,omitempty"`
@@ -46,7 +46,7 @@ func (m *Particle) Reset()         { *m = Particle{} }
 func (m *Particle) String() string { return proto.CompactTextString(m) }
 func (*Particle) ProtoMessage()    {}
 func (*Particle) Descriptor() ([]byte, []int) {
-	return fileDescriptor_example_0c5379ea09ab5235, []int{0}
+	return fileDescriptor_example_57af658e7ed3ecdf, []int{0}
 }
 func (m *Particle) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -131,11 +131,11 @@ type VarintParticle struct {
 	Child []uint64 `protobuf:"varint,2,rep,packed,name=child" json:"child,omitempty"`
 	// PDG code
 	Pdg int32 `protobuf:"zigzag32,3,opt,name=pdg,proto3" json:"pdg,omitempty"`
-	// position in um and time in ps
+	// vertex in um
 	Vertex *XYZTI `protobuf:"bytes,4,opt,name=vertex" json:"vertex,omitempty"`
-	// momentum in MeV
+	// momentum in 10 keV
 	P *XYZI `protobuf:"bytes,5,opt,name=p" json:"p,omitempty"`
-	// mass in MeV
+	// mass in 10 keV
 	Mass uint32 `protobuf:"varint,6,opt,name=mass,proto3" json:"mass,omitempty"`
 	// charge in units of e/3
 	Charge               int32    `protobuf:"zigzag32,7,opt,name=charge,proto3" json:"charge,omitempty"`
@@ -148,7 +148,7 @@ func (m *VarintParticle) Reset()         { *m = VarintParticle{} }
 func (m *VarintParticle) String() string { return proto.CompactTextString(m) }
 func (*VarintParticle) ProtoMessage()    {}
 func (*VarintParticle) Descriptor() ([]byte, []int) {
-	return fileDescriptor_example_0c5379ea09ab5235, []int{1}
+	return fileDescriptor_example_57af658e7ed3ecdf, []int{1}
 }
 func (m *VarintParticle) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -235,7 +235,7 @@ type PackedParticles struct {
 	Child2 []uint64 `protobuf:"varint,4,rep,packed,name=child2" json:"child2,omitempty"`
 	// PDG code
 	Pdg []int32 `protobuf:"zigzag32,5,rep,packed,name=pdg" json:"pdg,omitempty"`
-	// position in mm and time in ns
+	// vertex in mm
 	X []float32 `protobuf:"fixed32,6,rep,packed,name=x" json:"x,omitempty"`
 	Y []float32 `protobuf:"fixed32,7,rep,packed,name=y" json:"y,omitempty"`
 	Z []float32 `protobuf:"fixed32,8,rep,packed,name=z" json:"z,omitempty"`
@@ -257,7 +257,7 @@ func (m *PackedParticles) Reset()         { *m = PackedParticles{} }
 func (m *PackedParticles) String() string { return proto.CompactTextString(m) }
 func (*PackedParticles) ProtoMessage()    {}
 func (*PackedParticles) Descriptor() ([]byte, []int) {
-	return fileDescriptor_example_0c5379ea09ab5235, []int{2}
+	return fileDescriptor_example_57af658e7ed3ecdf, []int{2}
 }
 func (m *PackedParticles) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -393,16 +393,16 @@ type VarintPackedParticles struct {
 	Child2 []uint64 `protobuf:"varint,4,rep,packed,name=child2" json:"child2,omitempty"`
 	// PDG code
 	Pdg []int32 `protobuf:"zigzag32,5,rep,packed,name=pdg" json:"pdg,omitempty"`
-	// position in um and time in ps
+	// vertex in um
 	X []int32 `protobuf:"zigzag32,6,rep,packed,name=x" json:"x,omitempty"`
 	Y []int32 `protobuf:"zigzag32,7,rep,packed,name=y" json:"y,omitempty"`
 	Z []int32 `protobuf:"zigzag32,8,rep,packed,name=z" json:"z,omitempty"`
 	T []int32 `protobuf:"zigzag32,9,rep,packed,name=t" json:"t,omitempty"`
-	// momentum in MeV
+	// momentum in 10 keV
 	Px []int32 `protobuf:"zigzag32,10,rep,packed,name=px" json:"px,omitempty"`
 	Py []int32 `protobuf:"zigzag32,11,rep,packed,name=py" json:"py,omitempty"`
 	Pz []int32 `protobuf:"zigzag32,12,rep,packed,name=pz" json:"pz,omitempty"`
-	// mass in MeV
+	// mass in 10 keV
 	Mass []uint32 `protobuf:"varint,13,rep,packed,name=mass" json:"mass,omitempty"`
 	// charge in units of e/3
 	Charge               []int32  `protobuf:"zigzag32,14,rep,packed,name=charge" json:"charge,omitempty"`
@@ -415,7 +415,7 @@ func (m *VarintPackedParticles) Reset()         { *m = VarintPackedParticles{} }
 func (m *VarintPackedParticles) String() string { return proto.CompactTextString(m) }
 func (*VarintPackedParticles) ProtoMessage()    {}
 func (*VarintPackedParticles) Descriptor() ([]byte, []int) {
-	return fileDescriptor_example_0c5379ea09ab5235, []int{3}
+	return fileDescriptor_example_57af658e7ed3ecdf, []int{3}
 }
 func (m *VarintPackedParticles) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -556,7 +556,7 @@ func (m *XYZTD) Reset()         { *m = XYZTD{} }
 func (m *XYZTD) String() string { return proto.CompactTextString(m) }
 func (*XYZTD) ProtoMessage()    {}
 func (*XYZTD) Descriptor() ([]byte, []int) {
-	return fileDescriptor_example_0c5379ea09ab5235, []int{4}
+	return fileDescriptor_example_57af658e7ed3ecdf, []int{4}
 }
 func (m *XYZTD) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -627,7 +627,7 @@ func (m *XYZTF) Reset()         { *m = XYZTF{} }
 func (m *XYZTF) String() string { return proto.CompactTextString(m) }
 func (*XYZTF) ProtoMessage()    {}
 func (*XYZTF) Descriptor() ([]byte, []int) {
-	return fileDescriptor_example_0c5379ea09ab5235, []int{5}
+	return fileDescriptor_example_57af658e7ed3ecdf, []int{5}
 }
 func (m *XYZTF) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -698,7 +698,7 @@ func (m *XYZTL) Reset()         { *m = XYZTL{} }
 func (m *XYZTL) String() string { return proto.CompactTextString(m) }
 func (*XYZTL) ProtoMessage()    {}
 func (*XYZTL) Descriptor() ([]byte, []int) {
-	return fileDescriptor_example_0c5379ea09ab5235, []int{6}
+	return fileDescriptor_example_57af658e7ed3ecdf, []int{6}
 }
 func (m *XYZTL) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -769,7 +769,7 @@ func (m *XYZTI) Reset()         { *m = XYZTI{} }
 func (m *XYZTI) String() string { return proto.CompactTextString(m) }
 func (*XYZTI) ProtoMessage()    {}
 func (*XYZTI) Descriptor() ([]byte, []int) {
-	return fileDescriptor_example_0c5379ea09ab5235, []int{7}
+	return fileDescriptor_example_57af658e7ed3ecdf, []int{7}
 }
 func (m *XYZTI) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -839,7 +839,7 @@ func (m *XYZD) Reset()         { *m = XYZD{} }
 func (m *XYZD) String() string { return proto.CompactTextString(m) }
 func (*XYZD) ProtoMessage()    {}
 func (*XYZD) Descriptor() ([]byte, []int) {
-	return fileDescriptor_example_0c5379ea09ab5235, []int{8}
+	return fileDescriptor_example_57af658e7ed3ecdf, []int{8}
 }
 func (m *XYZD) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -902,7 +902,7 @@ func (m *XYZF) Reset()         { *m = XYZF{} }
 func (m *XYZF) String() string { return proto.CompactTextString(m) }
 func (*XYZF) ProtoMessage()    {}
 func (*XYZF) Descriptor() ([]byte, []int) {
-	return fileDescriptor_example_0c5379ea09ab5235, []int{9}
+	return fileDescriptor_example_57af658e7ed3ecdf, []int{9}
 }
 func (m *XYZF) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -965,7 +965,7 @@ func (m *XYZL) Reset()         { *m = XYZL{} }
 func (m *XYZL) String() string { return proto.CompactTextString(m) }
 func (*XYZL) ProtoMessage()    {}
 func (*XYZL) Descriptor() ([]byte, []int) {
-	return fileDescriptor_example_0c5379ea09ab5235, []int{10}
+	return fileDescriptor_example_57af658e7ed3ecdf, []int{10}
 }
 func (m *XYZL) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1028,7 +1028,7 @@ func (m *XYZI) Reset()         { *m = XYZI{} }
 func (m *XYZI) String() string { return proto.CompactTextString(m) }
 func (*XYZI) ProtoMessage()    {}
 func (*XYZI) Descriptor() ([]byte, []int) {
-	return fileDescriptor_example_0c5379ea09ab5235, []int{11}
+	return fileDescriptor_example_57af658e7ed3ecdf, []int{11}
 }
 func (m *XYZI) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -6138,10 +6138,10 @@ var (
 )
 
 func init() {
-	proto.RegisterFile("proio/model/example/example.proto", fileDescriptor_example_0c5379ea09ab5235)
+	proto.RegisterFile("proio/model/example/example.proto", fileDescriptor_example_57af658e7ed3ecdf)
 }
 
-var fileDescriptor_example_0c5379ea09ab5235 = []byte{
+var fileDescriptor_example_57af658e7ed3ecdf = []byte{
 	// 514 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x95, 0x4f, 0x8b, 0xd3, 0x40,
 	0x18, 0xc6, 0x9d, 0x49, 0xda, 0xac, 0x6f, 0xb7, 0xd5, 0x19, 0xff, 0x30, 0x7a, 0x28, 0xb1, 0x17,
