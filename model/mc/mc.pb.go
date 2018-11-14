@@ -58,7 +58,7 @@ func (m *Particle) Reset()         { *m = Particle{} }
 func (m *Particle) String() string { return proto.CompactTextString(m) }
 func (*Particle) ProtoMessage()    {}
 func (*Particle) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mc_05c295780f8c025b, []int{0}
+	return fileDescriptor_mc_8a3f4df98fcfffcc, []int{0}
 }
 func (m *Particle) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -221,7 +221,7 @@ func (m *PackedParticles) Reset()         { *m = PackedParticles{} }
 func (m *PackedParticles) String() string { return proto.CompactTextString(m) }
 func (*PackedParticles) ProtoMessage()    {}
 func (*PackedParticles) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mc_05c295780f8c025b, []int{1}
+	return fileDescriptor_mc_8a3f4df98fcfffcc, []int{1}
 }
 func (m *PackedParticles) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -424,7 +424,7 @@ func (m *VarintParticle) Reset()         { *m = VarintParticle{} }
 func (m *VarintParticle) String() string { return proto.CompactTextString(m) }
 func (*VarintParticle) ProtoMessage()    {}
 func (*VarintParticle) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mc_05c295780f8c025b, []int{2}
+	return fileDescriptor_mc_8a3f4df98fcfffcc, []int{2}
 }
 func (m *VarintParticle) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -587,7 +587,7 @@ func (m *VarintPackedParticles) Reset()         { *m = VarintPackedParticles{} }
 func (m *VarintPackedParticles) String() string { return proto.CompactTextString(m) }
 func (*VarintPackedParticles) ProtoMessage()    {}
 func (*VarintPackedParticles) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mc_05c295780f8c025b, []int{3}
+	return fileDescriptor_mc_8a3f4df98fcfffcc, []int{3}
 }
 func (m *VarintPackedParticles) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -767,7 +767,7 @@ func (m *MCParameters) Reset()         { *m = MCParameters{} }
 func (m *MCParameters) String() string { return proto.CompactTextString(m) }
 func (*MCParameters) ProtoMessage()    {}
 func (*MCParameters) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mc_05c295780f8c025b, []int{4}
+	return fileDescriptor_mc_8a3f4df98fcfffcc, []int{4}
 }
 func (m *MCParameters) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -843,7 +843,7 @@ func (m *ArrayInt) Reset()         { *m = ArrayInt{} }
 func (m *ArrayInt) String() string { return proto.CompactTextString(m) }
 func (*ArrayInt) ProtoMessage()    {}
 func (*ArrayInt) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mc_05c295780f8c025b, []int{5}
+	return fileDescriptor_mc_8a3f4df98fcfffcc, []int{5}
 }
 func (m *ArrayInt) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -891,7 +891,7 @@ func (m *ArrayDouble) Reset()         { *m = ArrayDouble{} }
 func (m *ArrayDouble) String() string { return proto.CompactTextString(m) }
 func (*ArrayDouble) ProtoMessage()    {}
 func (*ArrayDouble) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mc_05c295780f8c025b, []int{6}
+	return fileDescriptor_mc_8a3f4df98fcfffcc, []int{6}
 }
 func (m *ArrayDouble) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -956,7 +956,7 @@ func (m *Pythia8Parameters) Reset()         { *m = Pythia8Parameters{} }
 func (m *Pythia8Parameters) String() string { return proto.CompactTextString(m) }
 func (*Pythia8Parameters) ProtoMessage()    {}
 func (*Pythia8Parameters) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mc_05c295780f8c025b, []int{7}
+	return fileDescriptor_mc_8a3f4df98fcfffcc, []int{7}
 }
 func (m *Pythia8Parameters) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1077,7 +1077,7 @@ func (m *XYZTF) Reset()         { *m = XYZTF{} }
 func (m *XYZTF) String() string { return proto.CompactTextString(m) }
 func (*XYZTF) ProtoMessage()    {}
 func (*XYZTF) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mc_05c295780f8c025b, []int{8}
+	return fileDescriptor_mc_8a3f4df98fcfffcc, []int{8}
 }
 func (m *XYZTF) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1148,7 +1148,7 @@ func (m *XYZTI) Reset()         { *m = XYZTI{} }
 func (m *XYZTI) String() string { return proto.CompactTextString(m) }
 func (*XYZTI) ProtoMessage()    {}
 func (*XYZTI) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mc_05c295780f8c025b, []int{9}
+	return fileDescriptor_mc_8a3f4df98fcfffcc, []int{9}
 }
 func (m *XYZTI) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1218,7 +1218,7 @@ func (m *XYZF) Reset()         { *m = XYZF{} }
 func (m *XYZF) String() string { return proto.CompactTextString(m) }
 func (*XYZF) ProtoMessage()    {}
 func (*XYZF) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mc_05c295780f8c025b, []int{10}
+	return fileDescriptor_mc_8a3f4df98fcfffcc, []int{10}
 }
 func (m *XYZF) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1281,7 +1281,7 @@ func (m *XYZI) Reset()         { *m = XYZI{} }
 func (m *XYZI) String() string { return proto.CompactTextString(m) }
 func (*XYZI) ProtoMessage()    {}
 func (*XYZI) Descriptor() ([]byte, []int) {
-	return fileDescriptor_mc_05c295780f8c025b, []int{11}
+	return fileDescriptor_mc_8a3f4df98fcfffcc, []int{11}
 }
 func (m *XYZI) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -8080,9 +8080,9 @@ var (
 	ErrIntOverflowMc   = fmt.Errorf("proto: integer overflow")
 )
 
-func init() { proto.RegisterFile("proio/model/mc/mc.proto", fileDescriptor_mc_05c295780f8c025b) }
+func init() { proto.RegisterFile("proio/model/mc/mc.proto", fileDescriptor_mc_8a3f4df98fcfffcc) }
 
-var fileDescriptor_mc_05c295780f8c025b = []byte{
+var fileDescriptor_mc_8a3f4df98fcfffcc = []byte{
 	// 978 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x56, 0xcd, 0x6e, 0x23, 0x45,
 	0x10, 0xa6, 0xdb, 0xe3, 0xd8, 0xae, 0x89, 0x9d, 0xb8, 0x49, 0x76, 0x9b, 0xb0, 0x18, 0xcb, 0x68,
