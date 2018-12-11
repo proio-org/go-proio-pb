@@ -23,7 +23,7 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type IntParams struct {
-	Array                []int32  `protobuf:"varint,1,rep,packed,name=array" json:"array,omitempty"`
+	Array                []int32  `protobuf:"varint,1,rep,packed,name=array,proto3" json:"array,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -70,7 +70,7 @@ func (m *IntParams) GetArray() []int32 {
 }
 
 type FloatParams struct {
-	Array                []float32 `protobuf:"fixed32,1,rep,packed,name=array" json:"array,omitempty"`
+	Array                []float32 `protobuf:"fixed32,1,rep,packed,name=array,proto3" json:"array,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
@@ -117,7 +117,7 @@ func (m *FloatParams) GetArray() []float32 {
 }
 
 type StringParams struct {
-	Array                []string `protobuf:"bytes,1,rep,name=array" json:"array,omitempty"`
+	Array                []string `protobuf:"bytes,1,rep,name=array,proto3" json:"array,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -164,9 +164,9 @@ func (m *StringParams) GetArray() []string {
 }
 
 type Params struct {
-	Ints                 map[string]*IntParams    `protobuf:"bytes,1,rep,name=ints" json:"ints,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value"`
-	Floats               map[string]*FloatParams  `protobuf:"bytes,2,rep,name=floats" json:"floats,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value"`
-	Strings              map[string]*StringParams `protobuf:"bytes,3,rep,name=strings" json:"strings,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value"`
+	Ints                 map[string]*IntParams    `protobuf:"bytes,1,rep,name=ints,proto3" json:"ints,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Floats               map[string]*FloatParams  `protobuf:"bytes,2,rep,name=floats,proto3" json:"floats,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Strings              map[string]*StringParams `protobuf:"bytes,3,rep,name=strings,proto3" json:"strings,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	XXX_NoUnkeyedLiteral struct{}                 `json:"-"`
 	XXX_unrecognized     []byte                   `json:"-"`
 	XXX_sizecache        int32                    `json:"-"`
@@ -231,7 +231,7 @@ type ParticleID struct {
 	Type                 int32     `protobuf:"varint,2,opt,name=type,proto3" json:"type,omitempty"`
 	PDG                  int32     `protobuf:"varint,3,opt,name=PDG,proto3" json:"PDG,omitempty"`
 	AlgType              int32     `protobuf:"varint,4,opt,name=algType,proto3" json:"algType,omitempty"`
-	Params               []float32 `protobuf:"fixed32,5,rep,packed,name=params" json:"params,omitempty"`
+	Params               []float32 `protobuf:"fixed32,5,rep,packed,name=params,proto3" json:"params,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
@@ -306,17 +306,17 @@ func (m *ParticleID) GetParams() []float32 {
 }
 
 type MCParticle struct {
-	Parents              []uint64  `protobuf:"varint,1,rep,packed,name=parents" json:"parents,omitempty"`
-	Children             []uint64  `protobuf:"varint,2,rep,packed,name=children" json:"children,omitempty"`
+	Parents              []uint64  `protobuf:"varint,1,rep,packed,name=parents,proto3" json:"parents,omitempty"`
+	Children             []uint64  `protobuf:"varint,2,rep,packed,name=children,proto3" json:"children,omitempty"`
 	PDG                  int32     `protobuf:"varint,3,opt,name=PDG,proto3" json:"PDG,omitempty"`
-	Vertex               []float64 `protobuf:"fixed64,4,rep,packed,name=vertex" json:"vertex,omitempty"`
+	Vertex               []float64 `protobuf:"fixed64,4,rep,packed,name=vertex,proto3" json:"vertex,omitempty"`
 	Time                 float32   `protobuf:"fixed32,5,opt,name=time,proto3" json:"time,omitempty"`
-	P                    []float64 `protobuf:"fixed64,6,rep,packed,name=p" json:"p,omitempty"`
+	P                    []float64 `protobuf:"fixed64,6,rep,packed,name=p,proto3" json:"p,omitempty"`
 	Mass                 float64   `protobuf:"fixed64,7,opt,name=mass,proto3" json:"mass,omitempty"`
 	Charge               float32   `protobuf:"fixed32,8,opt,name=charge,proto3" json:"charge,omitempty"`
-	PEndPoint            []float64 `protobuf:"fixed64,9,rep,packed,name=PEndPoint" json:"PEndPoint,omitempty"`
-	Spin                 []float32 `protobuf:"fixed32,10,rep,packed,name=spin" json:"spin,omitempty"`
-	ColorFlow            []int32   `protobuf:"varint,11,rep,packed,name=colorFlow" json:"colorFlow,omitempty"`
+	PEndPoint            []float64 `protobuf:"fixed64,9,rep,packed,name=PEndPoint,proto3" json:"PEndPoint,omitempty"`
+	Spin                 []float32 `protobuf:"fixed32,10,rep,packed,name=spin,proto3" json:"spin,omitempty"`
+	ColorFlow            []int32   `protobuf:"varint,11,rep,packed,name=colorFlow,proto3" json:"colorFlow,omitempty"`
 	GenStatus            int32     `protobuf:"varint,12,opt,name=genStatus,proto3" json:"genStatus,omitempty"`
 	SimStatus            uint32    `protobuf:"varint,13,opt,name=simStatus,proto3" json:"simStatus,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
@@ -451,11 +451,11 @@ func (m *MCParticle) GetSimStatus() uint32 {
 type SimTrackerHit struct {
 	CellID0              int32     `protobuf:"varint,1,opt,name=cellID0,proto3" json:"cellID0,omitempty"`
 	CellID1              int32     `protobuf:"varint,2,opt,name=cellID1,proto3" json:"cellID1,omitempty"`
-	Pos                  []float64 `protobuf:"fixed64,3,rep,packed,name=pos" json:"pos,omitempty"`
+	Pos                  []float64 `protobuf:"fixed64,3,rep,packed,name=pos,proto3" json:"pos,omitempty"`
 	EDep                 float32   `protobuf:"fixed32,4,opt,name=EDep,proto3" json:"EDep,omitempty"`
 	Time                 float32   `protobuf:"fixed32,5,opt,name=time,proto3" json:"time,omitempty"`
 	Mc                   uint64    `protobuf:"varint,6,opt,name=mc,proto3" json:"mc,omitempty"`
-	P                    []float32 `protobuf:"fixed32,7,rep,packed,name=p" json:"p,omitempty"`
+	P                    []float32 `protobuf:"fixed32,7,rep,packed,name=p,proto3" json:"p,omitempty"`
 	PathLength           float32   `protobuf:"fixed32,8,opt,name=pathLength,proto3" json:"pathLength,omitempty"`
 	Quality              int32     `protobuf:"varint,9,opt,name=quality,proto3" json:"quality,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
@@ -563,7 +563,7 @@ type TrackerRawData struct {
 	CellID0              int32    `protobuf:"varint,1,opt,name=cellID0,proto3" json:"cellID0,omitempty"`
 	CellID1              int32    `protobuf:"varint,2,opt,name=cellID1,proto3" json:"cellID1,omitempty"`
 	Time                 int32    `protobuf:"varint,3,opt,name=time,proto3" json:"time,omitempty"`
-	ADCs                 []uint32 `protobuf:"varint,4,rep,packed,name=ADCs" json:"ADCs,omitempty"`
+	ADCs                 []uint32 `protobuf:"varint,4,rep,packed,name=ADCs,proto3" json:"ADCs,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -634,7 +634,7 @@ type TrackerData struct {
 	CellID0              int32     `protobuf:"varint,1,opt,name=cellID0,proto3" json:"cellID0,omitempty"`
 	CellID1              int32     `protobuf:"varint,2,opt,name=cellID1,proto3" json:"cellID1,omitempty"`
 	Time                 float32   `protobuf:"fixed32,3,opt,name=time,proto3" json:"time,omitempty"`
-	Charges              []float32 `protobuf:"fixed32,4,rep,packed,name=charges" json:"charges,omitempty"`
+	Charges              []float32 `protobuf:"fixed32,4,rep,packed,name=charges,proto3" json:"charges,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
@@ -705,13 +705,13 @@ type TrackerHit struct {
 	CellID0              int32     `protobuf:"varint,1,opt,name=cellID0,proto3" json:"cellID0,omitempty"`
 	CellID1              int32     `protobuf:"varint,2,opt,name=cellID1,proto3" json:"cellID1,omitempty"`
 	Type                 int32     `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`
-	Pos                  []float64 `protobuf:"fixed64,4,rep,packed,name=pos" json:"pos,omitempty"`
-	Cov                  []float64 `protobuf:"fixed64,5,rep,packed,name=cov" json:"cov,omitempty"`
+	Pos                  []float64 `protobuf:"fixed64,4,rep,packed,name=pos,proto3" json:"pos,omitempty"`
+	Cov                  []float64 `protobuf:"fixed64,5,rep,packed,name=cov,proto3" json:"cov,omitempty"`
 	EDep                 float32   `protobuf:"fixed32,6,opt,name=EDep,proto3" json:"EDep,omitempty"`
 	EDepErr              float32   `protobuf:"fixed32,7,opt,name=EDepErr,proto3" json:"EDepErr,omitempty"`
 	Time                 float32   `protobuf:"fixed32,8,opt,name=time,proto3" json:"time,omitempty"`
 	Quality              int32     `protobuf:"varint,9,opt,name=quality,proto3" json:"quality,omitempty"`
-	RawHits              []uint64  `protobuf:"varint,10,rep,packed,name=rawHits" json:"rawHits,omitempty"`
+	RawHits              []uint64  `protobuf:"varint,10,rep,packed,name=rawHits,proto3" json:"rawHits,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
@@ -825,7 +825,7 @@ type TrackerPulse struct {
 	CellID1              int32     `protobuf:"varint,2,opt,name=cellID1,proto3" json:"cellID1,omitempty"`
 	Time                 float32   `protobuf:"fixed32,3,opt,name=time,proto3" json:"time,omitempty"`
 	Charge               float32   `protobuf:"fixed32,4,opt,name=charge,proto3" json:"charge,omitempty"`
-	Cov                  []float32 `protobuf:"fixed32,5,rep,packed,name=cov" json:"cov,omitempty"`
+	Cov                  []float32 `protobuf:"fixed32,5,rep,packed,name=cov,proto3" json:"cov,omitempty"`
 	Quality              int32     `protobuf:"varint,6,opt,name=quality,proto3" json:"quality,omitempty"`
 	TPC                  uint64    `protobuf:"varint,7,opt,name=TPC,proto3" json:"TPC,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
@@ -919,16 +919,16 @@ type TrackerHitPlane struct {
 	CellID0              int32     `protobuf:"varint,1,opt,name=cellID0,proto3" json:"cellID0,omitempty"`
 	CellID1              int32     `protobuf:"varint,2,opt,name=cellID1,proto3" json:"cellID1,omitempty"`
 	Type                 int32     `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`
-	Pos                  []float64 `protobuf:"fixed64,4,rep,packed,name=pos" json:"pos,omitempty"`
-	U                    []float32 `protobuf:"fixed32,5,rep,packed,name=U" json:"U,omitempty"`
-	V                    []float32 `protobuf:"fixed32,6,rep,packed,name=V" json:"V,omitempty"`
+	Pos                  []float64 `protobuf:"fixed64,4,rep,packed,name=pos,proto3" json:"pos,omitempty"`
+	U                    []float32 `protobuf:"fixed32,5,rep,packed,name=U,proto3" json:"U,omitempty"`
+	V                    []float32 `protobuf:"fixed32,6,rep,packed,name=V,proto3" json:"V,omitempty"`
 	DU                   float32   `protobuf:"fixed32,7,opt,name=dU,proto3" json:"dU,omitempty"`
 	DV                   float32   `protobuf:"fixed32,8,opt,name=dV,proto3" json:"dV,omitempty"`
 	EDep                 float32   `protobuf:"fixed32,9,opt,name=EDep,proto3" json:"EDep,omitempty"`
 	EDepErr              float32   `protobuf:"fixed32,10,opt,name=EDepErr,proto3" json:"EDepErr,omitempty"`
 	Time                 float32   `protobuf:"fixed32,11,opt,name=time,proto3" json:"time,omitempty"`
 	Quality              int32     `protobuf:"varint,12,opt,name=quality,proto3" json:"quality,omitempty"`
-	RawHits              []uint64  `protobuf:"varint,13,rep,packed,name=rawHits" json:"rawHits,omitempty"`
+	RawHits              []uint64  `protobuf:"varint,13,rep,packed,name=rawHits,proto3" json:"rawHits,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
@@ -1062,15 +1062,15 @@ type TrackerHitZCylinder struct {
 	CellID0              int32     `protobuf:"varint,1,opt,name=cellID0,proto3" json:"cellID0,omitempty"`
 	CellID1              int32     `protobuf:"varint,2,opt,name=cellID1,proto3" json:"cellID1,omitempty"`
 	Type                 int32     `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`
-	Pos                  []float64 `protobuf:"fixed64,4,rep,packed,name=pos" json:"pos,omitempty"`
-	Center               []float32 `protobuf:"fixed32,5,rep,packed,name=center" json:"center,omitempty"`
+	Pos                  []float64 `protobuf:"fixed64,4,rep,packed,name=pos,proto3" json:"pos,omitempty"`
+	Center               []float32 `protobuf:"fixed32,5,rep,packed,name=center,proto3" json:"center,omitempty"`
 	DRPhi                float32   `protobuf:"fixed32,6,opt,name=dRPhi,proto3" json:"dRPhi,omitempty"`
 	DZ                   float32   `protobuf:"fixed32,7,opt,name=dZ,proto3" json:"dZ,omitempty"`
 	EDep                 float32   `protobuf:"fixed32,8,opt,name=EDep,proto3" json:"EDep,omitempty"`
 	EDepErr              float32   `protobuf:"fixed32,9,opt,name=EDepErr,proto3" json:"EDepErr,omitempty"`
 	Time                 float32   `protobuf:"fixed32,10,opt,name=time,proto3" json:"time,omitempty"`
 	Quality              int32     `protobuf:"varint,11,opt,name=quality,proto3" json:"quality,omitempty"`
-	RawHits              []uint64  `protobuf:"varint,12,rep,packed,name=rawHits" json:"rawHits,omitempty"`
+	RawHits              []uint64  `protobuf:"varint,12,rep,packed,name=rawHits,proto3" json:"rawHits,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
@@ -1200,10 +1200,10 @@ type Track struct {
 	DEdx                 float32             `protobuf:"fixed32,4,opt,name=dEdx,proto3" json:"dEdx,omitempty"`
 	DEdxErr              float32             `protobuf:"fixed32,5,opt,name=dEdxErr,proto3" json:"dEdxErr,omitempty"`
 	Radius               float32             `protobuf:"fixed32,6,opt,name=radius,proto3" json:"radius,omitempty"`
-	SubDetHits           []int32             `protobuf:"varint,7,rep,packed,name=subDetHits" json:"subDetHits,omitempty"`
-	States               []*Track_TrackState `protobuf:"bytes,8,rep,name=states" json:"states,omitempty"`
-	Hits                 []uint64            `protobuf:"varint,9,rep,packed,name=hits" json:"hits,omitempty"`
-	Tracks               []uint64            `protobuf:"varint,10,rep,packed,name=tracks" json:"tracks,omitempty"`
+	SubDetHits           []int32             `protobuf:"varint,7,rep,packed,name=subDetHits,proto3" json:"subDetHits,omitempty"`
+	States               []*Track_TrackState `protobuf:"bytes,8,rep,name=states,proto3" json:"states,omitempty"`
+	Hits                 []uint64            `protobuf:"varint,9,rep,packed,name=hits,proto3" json:"hits,omitempty"`
+	Tracks               []uint64            `protobuf:"varint,10,rep,packed,name=tracks,proto3" json:"tracks,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
 	XXX_unrecognized     []byte              `json:"-"`
 	XXX_sizecache        int32               `json:"-"`
@@ -1319,8 +1319,8 @@ type Track_TrackState struct {
 	Omega                float32   `protobuf:"fixed32,4,opt,name=omega,proto3" json:"omega,omitempty"`
 	Z0                   float32   `protobuf:"fixed32,5,opt,name=z0,proto3" json:"z0,omitempty"`
 	TanL                 float32   `protobuf:"fixed32,6,opt,name=tanL,proto3" json:"tanL,omitempty"`
-	Cov                  []float32 `protobuf:"fixed32,7,rep,packed,name=cov" json:"cov,omitempty"`
-	Ref                  []float32 `protobuf:"fixed32,8,rep,packed,name=ref" json:"ref,omitempty"`
+	Cov                  []float32 `protobuf:"fixed32,7,rep,packed,name=cov,proto3" json:"cov,omitempty"`
+	Ref                  []float32 `protobuf:"fixed32,8,rep,packed,name=ref,proto3" json:"ref,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
@@ -1419,8 +1419,8 @@ type SimCalorimeterHit struct {
 	CellID0              int32                        `protobuf:"varint,1,opt,name=cellID0,proto3" json:"cellID0,omitempty"`
 	CellID1              int32                        `protobuf:"varint,2,opt,name=cellID1,proto3" json:"cellID1,omitempty"`
 	Energy               float32                      `protobuf:"fixed32,3,opt,name=energy,proto3" json:"energy,omitempty"`
-	Pos                  []float32                    `protobuf:"fixed32,4,rep,packed,name=pos" json:"pos,omitempty"`
-	Contributions        []*SimCalorimeterHit_Contrib `protobuf:"bytes,5,rep,name=contributions" json:"contributions,omitempty"`
+	Pos                  []float32                    `protobuf:"fixed32,4,rep,packed,name=pos,proto3" json:"pos,omitempty"`
+	Contributions        []*SimCalorimeterHit_Contrib `protobuf:"bytes,5,rep,name=contributions,proto3" json:"contributions,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}                     `json:"-"`
 	XXX_unrecognized     []byte                       `json:"-"`
 	XXX_sizecache        int32                        `json:"-"`
@@ -1499,7 +1499,7 @@ type SimCalorimeterHit_Contrib struct {
 	Energy               float32   `protobuf:"fixed32,2,opt,name=energy,proto3" json:"energy,omitempty"`
 	Time                 float32   `protobuf:"fixed32,3,opt,name=time,proto3" json:"time,omitempty"`
 	PDG                  int32     `protobuf:"varint,4,opt,name=PDG,proto3" json:"PDG,omitempty"`
-	StepPos              []float32 `protobuf:"fixed32,5,rep,packed,name=stepPos" json:"stepPos,omitempty"`
+	StepPos              []float32 `protobuf:"fixed32,5,rep,packed,name=stepPos,proto3" json:"stepPos,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
@@ -1650,7 +1650,7 @@ type CalorimeterHit struct {
 	Energy               float32   `protobuf:"fixed32,3,opt,name=energy,proto3" json:"energy,omitempty"`
 	EnergyErr            float32   `protobuf:"fixed32,4,opt,name=energyErr,proto3" json:"energyErr,omitempty"`
 	Time                 float32   `protobuf:"fixed32,5,opt,name=time,proto3" json:"time,omitempty"`
-	Pos                  []float32 `protobuf:"fixed32,6,rep,packed,name=pos" json:"pos,omitempty"`
+	Pos                  []float32 `protobuf:"fixed32,6,rep,packed,name=pos,proto3" json:"pos,omitempty"`
 	Type                 int32     `protobuf:"varint,7,opt,name=type,proto3" json:"type,omitempty"`
 	Raw                  uint64    `protobuf:"varint,8,opt,name=raw,proto3" json:"raw,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
@@ -1751,17 +1751,17 @@ type Cluster struct {
 	Type                 int32         `protobuf:"varint,1,opt,name=type,proto3" json:"type,omitempty"`
 	Energy               float32       `protobuf:"fixed32,2,opt,name=energy,proto3" json:"energy,omitempty"`
 	EnergyErr            float32       `protobuf:"fixed32,3,opt,name=energyErr,proto3" json:"energyErr,omitempty"`
-	Pos                  []float32     `protobuf:"fixed32,4,rep,packed,name=pos" json:"pos,omitempty"`
-	PosErr               []float32     `protobuf:"fixed32,5,rep,packed,name=posErr" json:"posErr,omitempty"`
+	Pos                  []float32     `protobuf:"fixed32,4,rep,packed,name=pos,proto3" json:"pos,omitempty"`
+	PosErr               []float32     `protobuf:"fixed32,5,rep,packed,name=posErr,proto3" json:"posErr,omitempty"`
 	Theta                float32       `protobuf:"fixed32,6,opt,name=theta,proto3" json:"theta,omitempty"`
 	Phi                  float32       `protobuf:"fixed32,7,opt,name=phi,proto3" json:"phi,omitempty"`
-	DirErr               []float32     `protobuf:"fixed32,8,rep,packed,name=dirErr" json:"dirErr,omitempty"`
-	Shape                []float32     `protobuf:"fixed32,9,rep,packed,name=shape" json:"shape,omitempty"`
-	PIDs                 []*ParticleID `protobuf:"bytes,10,rep,name=PIDs" json:"PIDs,omitempty"`
-	Clusters             []uint64      `protobuf:"varint,11,rep,packed,name=clusters" json:"clusters,omitempty"`
-	Hits                 []uint64      `protobuf:"varint,12,rep,packed,name=hits" json:"hits,omitempty"`
-	Weights              []float32     `protobuf:"fixed32,13,rep,packed,name=weights" json:"weights,omitempty"`
-	SubDetEnes           []float32     `protobuf:"fixed32,14,rep,packed,name=subDetEnes" json:"subDetEnes,omitempty"`
+	DirErr               []float32     `protobuf:"fixed32,8,rep,packed,name=dirErr,proto3" json:"dirErr,omitempty"`
+	Shape                []float32     `protobuf:"fixed32,9,rep,packed,name=shape,proto3" json:"shape,omitempty"`
+	PIDs                 []*ParticleID `protobuf:"bytes,10,rep,name=PIDs,proto3" json:"PIDs,omitempty"`
+	Clusters             []uint64      `protobuf:"varint,11,rep,packed,name=clusters,proto3" json:"clusters,omitempty"`
+	Hits                 []uint64      `protobuf:"varint,12,rep,packed,name=hits,proto3" json:"hits,omitempty"`
+	Weights              []float32     `protobuf:"fixed32,13,rep,packed,name=weights,proto3" json:"weights,omitempty"`
+	SubDetEnes           []float32     `protobuf:"fixed32,14,rep,packed,name=subDetEnes,proto3" json:"subDetEnes,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
 	XXX_unrecognized     []byte        `json:"-"`
 	XXX_sizecache        int32         `json:"-"`
@@ -1900,18 +1900,18 @@ func (m *Cluster) GetSubDetEnes() []float32 {
 
 type RecParticle struct {
 	Type                 int32         `protobuf:"varint,1,opt,name=type,proto3" json:"type,omitempty"`
-	P                    []float32     `protobuf:"fixed32,2,rep,packed,name=p" json:"p,omitempty"`
+	P                    []float32     `protobuf:"fixed32,2,rep,packed,name=p,proto3" json:"p,omitempty"`
 	Energy               float32       `protobuf:"fixed32,3,opt,name=energy,proto3" json:"energy,omitempty"`
-	Cov                  []float32     `protobuf:"fixed32,4,rep,packed,name=cov" json:"cov,omitempty"`
+	Cov                  []float32     `protobuf:"fixed32,4,rep,packed,name=cov,proto3" json:"cov,omitempty"`
 	Mass                 float32       `protobuf:"fixed32,5,opt,name=mass,proto3" json:"mass,omitempty"`
 	Charge               float32       `protobuf:"fixed32,6,opt,name=charge,proto3" json:"charge,omitempty"`
-	Ref                  []float32     `protobuf:"fixed32,7,rep,packed,name=ref" json:"ref,omitempty"`
-	PIDs                 []*ParticleID `protobuf:"bytes,8,rep,name=PIDs" json:"PIDs,omitempty"`
+	Ref                  []float32     `protobuf:"fixed32,7,rep,packed,name=ref,proto3" json:"ref,omitempty"`
+	PIDs                 []*ParticleID `protobuf:"bytes,8,rep,name=PIDs,proto3" json:"PIDs,omitempty"`
 	PIDUsed              int32         `protobuf:"varint,9,opt,name=PIDUsed,proto3" json:"PIDUsed,omitempty"`
 	GoodnessOfPID        float32       `protobuf:"fixed32,10,opt,name=goodnessOfPID,proto3" json:"goodnessOfPID,omitempty"`
-	Recs                 []uint64      `protobuf:"varint,11,rep,packed,name=recs" json:"recs,omitempty"`
-	Tracks               []uint64      `protobuf:"varint,12,rep,packed,name=tracks" json:"tracks,omitempty"`
-	Clusters             []uint64      `protobuf:"varint,13,rep,packed,name=clusters" json:"clusters,omitempty"`
+	Recs                 []uint64      `protobuf:"varint,11,rep,packed,name=recs,proto3" json:"recs,omitempty"`
+	Tracks               []uint64      `protobuf:"varint,12,rep,packed,name=tracks,proto3" json:"tracks,omitempty"`
+	Clusters             []uint64      `protobuf:"varint,13,rep,packed,name=clusters,proto3" json:"clusters,omitempty"`
 	StartVtx             uint64        `protobuf:"varint,14,opt,name=startVtx,proto3" json:"startVtx,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
 	XXX_unrecognized     []byte        `json:"-"`
@@ -2054,9 +2054,9 @@ type Vertex struct {
 	AlgType              int32     `protobuf:"varint,2,opt,name=algType,proto3" json:"algType,omitempty"`
 	Chi2                 float32   `protobuf:"fixed32,3,opt,name=chi2,proto3" json:"chi2,omitempty"`
 	Prob                 float32   `protobuf:"fixed32,4,opt,name=prob,proto3" json:"prob,omitempty"`
-	Pos                  []float32 `protobuf:"fixed32,5,rep,packed,name=pos" json:"pos,omitempty"`
-	Cov                  []float32 `protobuf:"fixed32,6,rep,packed,name=cov" json:"cov,omitempty"`
-	Params               []float32 `protobuf:"fixed32,7,rep,packed,name=params" json:"params,omitempty"`
+	Pos                  []float32 `protobuf:"fixed32,5,rep,packed,name=pos,proto3" json:"pos,omitempty"`
+	Cov                  []float32 `protobuf:"fixed32,6,rep,packed,name=cov,proto3" json:"cov,omitempty"`
+	Params               []float32 `protobuf:"fixed32,7,rep,packed,name=params,proto3" json:"params,omitempty"`
 	RecPart              uint64    `protobuf:"varint,8,opt,name=recPart,proto3" json:"recPart,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`

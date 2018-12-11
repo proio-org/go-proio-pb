@@ -24,15 +24,15 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
 type Particle struct {
 	// ProIO entry identifiers that point to parent Particles
-	Parent []uint64 `protobuf:"varint,1,rep,packed,name=parent" json:"parent,omitempty"`
+	Parent []uint64 `protobuf:"varint,1,rep,packed,name=parent,proto3" json:"parent,omitempty"`
 	// ProIO entry identifiers that point to child Particles
-	Child []uint64 `protobuf:"varint,2,rep,packed,name=child" json:"child,omitempty"`
+	Child []uint64 `protobuf:"varint,2,rep,packed,name=child,proto3" json:"child,omitempty"`
 	// PDG code
 	Pdg int32 `protobuf:"zigzag32,3,opt,name=pdg,proto3" json:"pdg,omitempty"`
 	// vertex in mm
-	Vertex *XYZTF `protobuf:"bytes,4,opt,name=vertex" json:"vertex,omitempty"`
+	Vertex *XYZTF `protobuf:"bytes,4,opt,name=vertex,proto3" json:"vertex,omitempty"`
 	// momentum in GeV
-	P *XYZF `protobuf:"bytes,5,opt,name=p" json:"p,omitempty"`
+	P *XYZF `protobuf:"bytes,5,opt,name=p,proto3" json:"p,omitempty"`
 	// mass in GeV
 	Mass float32 `protobuf:"fixed32,6,opt,name=mass,proto3" json:"mass,omitempty"`
 	// charge in units of e/3
@@ -126,15 +126,15 @@ func (m *Particle) GetCharge() int32 {
 
 type VarintParticle struct {
 	// ProIO entry identifiers that point to parent Particles
-	Parent []uint64 `protobuf:"varint,1,rep,packed,name=parent" json:"parent,omitempty"`
+	Parent []uint64 `protobuf:"varint,1,rep,packed,name=parent,proto3" json:"parent,omitempty"`
 	// ProIO entry identifiers that point to child Particles
-	Child []uint64 `protobuf:"varint,2,rep,packed,name=child" json:"child,omitempty"`
+	Child []uint64 `protobuf:"varint,2,rep,packed,name=child,proto3" json:"child,omitempty"`
 	// PDG code
 	Pdg int32 `protobuf:"zigzag32,3,opt,name=pdg,proto3" json:"pdg,omitempty"`
 	// vertex in um
-	Vertex *XYZTI `protobuf:"bytes,4,opt,name=vertex" json:"vertex,omitempty"`
+	Vertex *XYZTI `protobuf:"bytes,4,opt,name=vertex,proto3" json:"vertex,omitempty"`
 	// momentum in 10 keV
-	P *XYZI `protobuf:"bytes,5,opt,name=p" json:"p,omitempty"`
+	P *XYZI `protobuf:"bytes,5,opt,name=p,proto3" json:"p,omitempty"`
 	// mass in 10 keV
 	Mass uint32 `protobuf:"varint,6,opt,name=mass,proto3" json:"mass,omitempty"`
 	// charge in units of e/3
@@ -228,26 +228,26 @@ func (m *VarintParticle) GetCharge() int32 {
 
 type PackedParticles struct {
 	// parent particle entry indices
-	Parent1 []uint64 `protobuf:"varint,1,rep,packed,name=parent1" json:"parent1,omitempty"`
-	Parent2 []uint64 `protobuf:"varint,2,rep,packed,name=parent2" json:"parent2,omitempty"`
+	Parent1 []uint64 `protobuf:"varint,1,rep,packed,name=parent1,proto3" json:"parent1,omitempty"`
+	Parent2 []uint64 `protobuf:"varint,2,rep,packed,name=parent2,proto3" json:"parent2,omitempty"`
 	// child particle entry indices
-	Child1 []uint64 `protobuf:"varint,3,rep,packed,name=child1" json:"child1,omitempty"`
-	Child2 []uint64 `protobuf:"varint,4,rep,packed,name=child2" json:"child2,omitempty"`
+	Child1 []uint64 `protobuf:"varint,3,rep,packed,name=child1,proto3" json:"child1,omitempty"`
+	Child2 []uint64 `protobuf:"varint,4,rep,packed,name=child2,proto3" json:"child2,omitempty"`
 	// PDG code
-	Pdg []int32 `protobuf:"zigzag32,5,rep,packed,name=pdg" json:"pdg,omitempty"`
+	Pdg []int32 `protobuf:"zigzag32,5,rep,packed,name=pdg,proto3" json:"pdg,omitempty"`
 	// vertex in mm
-	X []float32 `protobuf:"fixed32,6,rep,packed,name=x" json:"x,omitempty"`
-	Y []float32 `protobuf:"fixed32,7,rep,packed,name=y" json:"y,omitempty"`
-	Z []float32 `protobuf:"fixed32,8,rep,packed,name=z" json:"z,omitempty"`
-	T []float32 `protobuf:"fixed32,9,rep,packed,name=t" json:"t,omitempty"`
+	X []float32 `protobuf:"fixed32,6,rep,packed,name=x,proto3" json:"x,omitempty"`
+	Y []float32 `protobuf:"fixed32,7,rep,packed,name=y,proto3" json:"y,omitempty"`
+	Z []float32 `protobuf:"fixed32,8,rep,packed,name=z,proto3" json:"z,omitempty"`
+	T []float32 `protobuf:"fixed32,9,rep,packed,name=t,proto3" json:"t,omitempty"`
 	// momentum in GeV
-	Px []float32 `protobuf:"fixed32,10,rep,packed,name=px" json:"px,omitempty"`
-	Py []float32 `protobuf:"fixed32,11,rep,packed,name=py" json:"py,omitempty"`
-	Pz []float32 `protobuf:"fixed32,12,rep,packed,name=pz" json:"pz,omitempty"`
+	Px []float32 `protobuf:"fixed32,10,rep,packed,name=px,proto3" json:"px,omitempty"`
+	Py []float32 `protobuf:"fixed32,11,rep,packed,name=py,proto3" json:"py,omitempty"`
+	Pz []float32 `protobuf:"fixed32,12,rep,packed,name=pz,proto3" json:"pz,omitempty"`
 	// mass in GeV
-	Mass []float32 `protobuf:"fixed32,13,rep,packed,name=mass" json:"mass,omitempty"`
+	Mass []float32 `protobuf:"fixed32,13,rep,packed,name=mass,proto3" json:"mass,omitempty"`
 	// charge in units of e/3
-	Charge               []int32  `protobuf:"zigzag32,14,rep,packed,name=charge" json:"charge,omitempty"`
+	Charge               []int32  `protobuf:"zigzag32,14,rep,packed,name=charge,proto3" json:"charge,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -386,26 +386,26 @@ func (m *PackedParticles) GetCharge() []int32 {
 
 type VarintPackedParticles struct {
 	// parent particle entry indices
-	Parent1 []uint64 `protobuf:"varint,1,rep,packed,name=parent1" json:"parent1,omitempty"`
-	Parent2 []uint64 `protobuf:"varint,2,rep,packed,name=parent2" json:"parent2,omitempty"`
+	Parent1 []uint64 `protobuf:"varint,1,rep,packed,name=parent1,proto3" json:"parent1,omitempty"`
+	Parent2 []uint64 `protobuf:"varint,2,rep,packed,name=parent2,proto3" json:"parent2,omitempty"`
 	// child particle entry indices
-	Child1 []uint64 `protobuf:"varint,3,rep,packed,name=child1" json:"child1,omitempty"`
-	Child2 []uint64 `protobuf:"varint,4,rep,packed,name=child2" json:"child2,omitempty"`
+	Child1 []uint64 `protobuf:"varint,3,rep,packed,name=child1,proto3" json:"child1,omitempty"`
+	Child2 []uint64 `protobuf:"varint,4,rep,packed,name=child2,proto3" json:"child2,omitempty"`
 	// PDG code
-	Pdg []int32 `protobuf:"zigzag32,5,rep,packed,name=pdg" json:"pdg,omitempty"`
+	Pdg []int32 `protobuf:"zigzag32,5,rep,packed,name=pdg,proto3" json:"pdg,omitempty"`
 	// vertex in um
-	X []int32 `protobuf:"zigzag32,6,rep,packed,name=x" json:"x,omitempty"`
-	Y []int32 `protobuf:"zigzag32,7,rep,packed,name=y" json:"y,omitempty"`
-	Z []int32 `protobuf:"zigzag32,8,rep,packed,name=z" json:"z,omitempty"`
-	T []int32 `protobuf:"zigzag32,9,rep,packed,name=t" json:"t,omitempty"`
+	X []int32 `protobuf:"zigzag32,6,rep,packed,name=x,proto3" json:"x,omitempty"`
+	Y []int32 `protobuf:"zigzag32,7,rep,packed,name=y,proto3" json:"y,omitempty"`
+	Z []int32 `protobuf:"zigzag32,8,rep,packed,name=z,proto3" json:"z,omitempty"`
+	T []int32 `protobuf:"zigzag32,9,rep,packed,name=t,proto3" json:"t,omitempty"`
 	// momentum in 10 keV
-	Px []int32 `protobuf:"zigzag32,10,rep,packed,name=px" json:"px,omitempty"`
-	Py []int32 `protobuf:"zigzag32,11,rep,packed,name=py" json:"py,omitempty"`
-	Pz []int32 `protobuf:"zigzag32,12,rep,packed,name=pz" json:"pz,omitempty"`
+	Px []int32 `protobuf:"zigzag32,10,rep,packed,name=px,proto3" json:"px,omitempty"`
+	Py []int32 `protobuf:"zigzag32,11,rep,packed,name=py,proto3" json:"py,omitempty"`
+	Pz []int32 `protobuf:"zigzag32,12,rep,packed,name=pz,proto3" json:"pz,omitempty"`
 	// mass in 10 keV
-	Mass []uint32 `protobuf:"varint,13,rep,packed,name=mass" json:"mass,omitempty"`
+	Mass []uint32 `protobuf:"varint,13,rep,packed,name=mass,proto3" json:"mass,omitempty"`
 	// charge in units of e/3
-	Charge               []int32  `protobuf:"zigzag32,14,rep,packed,name=charge" json:"charge,omitempty"`
+	Charge               []int32  `protobuf:"zigzag32,14,rep,packed,name=charge,proto3" json:"charge,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`

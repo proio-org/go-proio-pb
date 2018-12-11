@@ -64,11 +64,11 @@ type BucketHeader struct {
 	// implementations save all FileDescriptorProtos (and their dependencies)
 	// required to describe the data in bucket headers.  The
 	// FileDescriptorProtos must be placed into headers before they are needed.
-	FileDescriptor [][]byte `protobuf:"bytes,5,rep,name=fileDescriptor" json:"fileDescriptor,omitempty"`
+	FileDescriptor [][]byte `protobuf:"bytes,5,rep,name=fileDescriptor,proto3" json:"fileDescriptor,omitempty"`
 	// metadata describes key-value pairs that are to be associated with all
 	// events that follow in the stream, until the keys are overwritten or the
 	// stream ends.
-	Metadata             map[string][]byte `protobuf:"bytes,7,rep,name=metadata" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Metadata             map[string][]byte `protobuf:"bytes,7,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
 	XXX_unrecognized     []byte            `json:"-"`
 	XXX_sizecache        int32             `json:"-"`
@@ -146,19 +146,19 @@ func (m *BucketHeader) GetMetadata() map[string][]byte {
 type Event struct {
 	// tag stores a mapping from human-readable strings to lists of number
 	// entry ids.
-	Tag map[string]*Tag `protobuf:"bytes,1,rep,name=tag" json:"tag,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value"`
+	Tag map[string]*Tag `protobuf:"bytes,1,rep,name=tag,proto3" json:"tag,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// nEntries stores the number of entries that have been stored in (not that
 	// are currently stored in) the Event.  This is for a simple way to assign
 	// unique identifiers to new entries.
 	NEntries uint64 `protobuf:"varint,2,opt,name=nEntries,proto3" json:"nEntries,omitempty"`
 	// entry stores a mapping from a numeric entry id to an Any message type.
-	Entry map[uint64]*Any `protobuf:"bytes,3,rep,name=entry" json:"entry,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value"`
+	Entry map[uint64]*Any `protobuf:"bytes,3,rep,name=entry,proto3" json:"entry,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// nTypes stores the number of types that have been stored in (not that are
 	// currently stored in) the Event.  This is for a simple way to assign
 	// unique identifiers to new types.
 	NTypes uint64 `protobuf:"varint,4,opt,name=nTypes,proto3" json:"nTypes,omitempty"`
 	// type stores a mapping from a numeric type id to a protobuf type string.
-	Type                 map[uint64]string `protobuf:"bytes,5,rep,name=type" json:"type,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Type                 map[uint64]string `protobuf:"bytes,5,rep,name=type,proto3" json:"type,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
 	XXX_unrecognized     []byte            `json:"-"`
 	XXX_sizecache        int32             `json:"-"`
@@ -234,7 +234,7 @@ func (m *Event) GetType() map[uint64]string {
 
 // A Tag is a simple list of numeric entry ids.
 type Tag struct {
-	Entry                []uint64 `protobuf:"varint,1,rep,packed,name=entry" json:"entry,omitempty"`
+	Entry                []uint64 `protobuf:"varint,1,rep,packed,name=entry,proto3" json:"entry,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
