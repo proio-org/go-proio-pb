@@ -2494,9 +2494,9 @@ func (m *Params) MarshalTo(dAtA []byte) (int, error) {
 				dAtA[i] = 0x12
 				i++
 				i = encodeVarintLcio(dAtA, i, uint64(v.Size()))
-				n4, err := v.MarshalTo(dAtA[i:])
-				if err != nil {
-					return 0, err
+				n4, err4 := v.MarshalTo(dAtA[i:])
+				if err4 != nil {
+					return 0, err4
 				}
 				i += n4
 			}
@@ -2522,9 +2522,9 @@ func (m *Params) MarshalTo(dAtA []byte) (int, error) {
 				dAtA[i] = 0x12
 				i++
 				i = encodeVarintLcio(dAtA, i, uint64(v.Size()))
-				n5, err := v.MarshalTo(dAtA[i:])
-				if err != nil {
-					return 0, err
+				n5, err5 := v.MarshalTo(dAtA[i:])
+				if err5 != nil {
+					return 0, err5
 				}
 				i += n5
 			}
@@ -2550,9 +2550,9 @@ func (m *Params) MarshalTo(dAtA []byte) (int, error) {
 				dAtA[i] = 0x12
 				i++
 				i = encodeVarintLcio(dAtA, i, uint64(v.Size()))
-				n6, err := v.MarshalTo(dAtA[i:])
-				if err != nil {
-					return 0, err
+				n6, err6 := v.MarshalTo(dAtA[i:])
+				if err6 != nil {
+					return 0, err6
 				}
 				i += n6
 			}

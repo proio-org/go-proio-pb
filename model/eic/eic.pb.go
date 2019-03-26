@@ -1261,9 +1261,9 @@ func (m *Particle) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x22
 		i++
 		i = encodeVarintEic(dAtA, i, uint64(m.Vertex.Size()))
-		n5, err := m.Vertex.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n5, err5 := m.Vertex.MarshalTo(dAtA[i:])
+		if err5 != nil {
+			return 0, err5
 		}
 		i += n5
 	}
@@ -1271,9 +1271,9 @@ func (m *Particle) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x2a
 		i++
 		i = encodeVarintEic(dAtA, i, uint64(m.PDouble.Size()))
-		n6, err := m.PDouble.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n6, err6 := m.PDouble.MarshalTo(dAtA[i:])
+		if err6 != nil {
+			return 0, err6
 		}
 		i += n6
 	}
@@ -1293,9 +1293,9 @@ func (m *Particle) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x42
 		i++
 		i = encodeVarintEic(dAtA, i, uint64(m.Spin.Size()))
-		n7, err := m.Spin.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n7, err7 := m.Spin.MarshalTo(dAtA[i:])
+		if err7 != nil {
+			return 0, err7
 		}
 		i += n7
 	}
@@ -1303,9 +1303,9 @@ func (m *Particle) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x4a
 		i++
 		i = encodeVarintEic(dAtA, i, uint64(m.P.Size()))
-		n8, err := m.P.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n8, err8 := m.P.MarshalTo(dAtA[i:])
+		if err8 != nil {
+			return 0, err8
 		}
 		i += n8
 	}
@@ -1345,9 +1345,9 @@ func (m *SimHit) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x12
 		i++
 		i = encodeVarintEic(dAtA, i, uint64(m.Globalprepos.Size()))
-		n9, err := m.Globalprepos.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n9, err9 := m.Globalprepos.MarshalTo(dAtA[i:])
+		if err9 != nil {
+			return 0, err9
 		}
 		i += n9
 	}
@@ -1355,9 +1355,9 @@ func (m *SimHit) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x1a
 		i++
 		i = encodeVarintEic(dAtA, i, uint64(m.Globalpostpos.Size()))
-		n10, err := m.Globalpostpos.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n10, err10 := m.Globalpostpos.MarshalTo(dAtA[i:])
+		if err10 != nil {
+			return 0, err10
 		}
 		i += n10
 	}
@@ -1657,9 +1657,9 @@ func (m *TrackSegment) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0xa
 		i++
 		i = encodeVarintEic(dAtA, i, uint64(m.Vertex.Size()))
-		n20, err := m.Vertex.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n20, err20 := m.Vertex.MarshalTo(dAtA[i:])
+		if err20 != nil {
+			return 0, err20
 		}
 		i += n20
 	}
@@ -1679,9 +1679,9 @@ func (m *TrackSegment) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x1a
 		i++
 		i = encodeVarintEic(dAtA, i, uint64(m.Poq.Size()))
-		n21, err := m.Poq.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n21, err21 := m.Poq.MarshalTo(dAtA[i:])
+		if err21 != nil {
+			return 0, err21
 		}
 		i += n21
 	}
@@ -1701,9 +1701,9 @@ func (m *TrackSegment) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x2a
 		i++
 		i = encodeVarintEic(dAtA, i, uint64(m.Curvature.Size()))
-		n22, err := m.Curvature.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n22, err22 := m.Curvature.MarshalTo(dAtA[i:])
+		if err22 != nil {
+			return 0, err22
 		}
 		i += n22
 	}
@@ -1735,9 +1735,9 @@ func (m *TrackSegment) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x4a
 		i++
 		i = encodeVarintEic(dAtA, i, uint64(m.Magfield.Size()))
-		n23, err := m.Magfield.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n23, err23 := m.Magfield.MarshalTo(dAtA[i:])
+		if err23 != nil {
+			return 0, err23
 		}
 		i += n23
 	}
@@ -1766,9 +1766,9 @@ func (m *ObservedPos) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0xa
 		i++
 		i = encodeVarintEic(dAtA, i, uint64(m.Mean.Size()))
-		n24, err := m.Mean.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n24, err24 := m.Mean.MarshalTo(dAtA[i:])
+		if err24 != nil {
+			return 0, err24
 		}
 		i += n24
 	}
@@ -1820,9 +1820,9 @@ func (m *RandVar) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x1a
 		i++
 		i = encodeVarintEic(dAtA, i, uint64(m.Sigma.Size()))
-		n25, err := m.Sigma.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n25, err25 := m.Sigma.MarshalTo(dAtA[i:])
+		if err25 != nil {
+			return 0, err25
 		}
 		i += n25
 	}

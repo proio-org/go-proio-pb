@@ -1190,9 +1190,9 @@ func (m *Particle) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x22
 		i++
 		i = encodeVarintExample(dAtA, i, uint64(m.Vertex.Size()))
-		n5, err := m.Vertex.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n5, err5 := m.Vertex.MarshalTo(dAtA[i:])
+		if err5 != nil {
+			return 0, err5
 		}
 		i += n5
 	}
@@ -1200,9 +1200,9 @@ func (m *Particle) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x2a
 		i++
 		i = encodeVarintExample(dAtA, i, uint64(m.P.Size()))
-		n6, err := m.P.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n6, err6 := m.P.MarshalTo(dAtA[i:])
+		if err6 != nil {
+			return 0, err6
 		}
 		i += n6
 	}
@@ -1281,9 +1281,9 @@ func (m *VarintParticle) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x22
 		i++
 		i = encodeVarintExample(dAtA, i, uint64(m.Vertex.Size()))
-		n11, err := m.Vertex.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n11, err11 := m.Vertex.MarshalTo(dAtA[i:])
+		if err11 != nil {
+			return 0, err11
 		}
 		i += n11
 	}
@@ -1291,9 +1291,9 @@ func (m *VarintParticle) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x2a
 		i++
 		i = encodeVarintExample(dAtA, i, uint64(m.P.Size()))
-		n12, err := m.P.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n12, err12 := m.P.MarshalTo(dAtA[i:])
+		if err12 != nil {
+			return 0, err12
 		}
 		i += n12
 	}

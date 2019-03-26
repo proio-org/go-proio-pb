@@ -1454,9 +1454,9 @@ func (m *Particle) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x22
 		i++
 		i = encodeVarintMc(dAtA, i, uint64(m.Vertex.Size()))
-		n1, err := m.Vertex.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n1, err1 := m.Vertex.MarshalTo(dAtA[i:])
+		if err1 != nil {
+			return 0, err1
 		}
 		i += n1
 	}
@@ -1464,9 +1464,9 @@ func (m *Particle) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x2a
 		i++
 		i = encodeVarintMc(dAtA, i, uint64(m.P.Size()))
-		n2, err := m.P.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n2, err2 := m.P.MarshalTo(dAtA[i:])
+		if err2 != nil {
+			return 0, err2
 		}
 		i += n2
 	}
@@ -1841,9 +1841,9 @@ func (m *VarintParticle) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x22
 		i++
 		i = encodeVarintMc(dAtA, i, uint64(m.Vertex.Size()))
-		n34, err := m.Vertex.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n34, err34 := m.Vertex.MarshalTo(dAtA[i:])
+		if err34 != nil {
+			return 0, err34
 		}
 		i += n34
 	}
@@ -1851,9 +1851,9 @@ func (m *VarintParticle) MarshalTo(dAtA []byte) (int, error) {
 		dAtA[i] = 0x2a
 		i++
 		i = encodeVarintMc(dAtA, i, uint64(m.P.Size()))
-		n35, err := m.P.MarshalTo(dAtA[i:])
-		if err != nil {
-			return 0, err
+		n35, err35 := m.P.MarshalTo(dAtA[i:])
+		if err35 != nil {
+			return 0, err35
 		}
 		i += n35
 	}
@@ -2315,9 +2315,9 @@ func (m *MCParameters) MarshalTo(dAtA []byte) (int, error) {
 				dAtA[i] = 0x12
 				i++
 				i = encodeVarintMc(dAtA, i, uint64(v.Size()))
-				n83, err := v.MarshalTo(dAtA[i:])
-				if err != nil {
-					return 0, err
+				n83, err83 := v.MarshalTo(dAtA[i:])
+				if err83 != nil {
+					return 0, err83
 				}
 				i += n83
 			}
@@ -2343,9 +2343,9 @@ func (m *MCParameters) MarshalTo(dAtA []byte) (int, error) {
 				dAtA[i] = 0x12
 				i++
 				i = encodeVarintMc(dAtA, i, uint64(v.Size()))
-				n84, err := v.MarshalTo(dAtA[i:])
-				if err != nil {
-					return 0, err
+				n84, err84 := v.MarshalTo(dAtA[i:])
+				if err84 != nil {
+					return 0, err84
 				}
 				i += n84
 			}
