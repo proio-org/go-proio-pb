@@ -9,6 +9,7 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	io "io"
 	math "math"
+	math_bits "math/bits"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -20,7 +21,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type Particle struct {
 	// ProIO entry identifiers that point to parent Particles
@@ -68,7 +69,7 @@ func (m *Particle) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return xxx_messageInfo_Particle.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
+		n, err := m.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
@@ -231,7 +232,7 @@ func (m *PackedParticles) XXX_Marshal(b []byte, deterministic bool) ([]byte, err
 		return xxx_messageInfo_PackedParticles.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
+		n, err := m.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
@@ -434,7 +435,7 @@ func (m *VarintParticle) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return xxx_messageInfo_VarintParticle.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
+		n, err := m.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
@@ -597,7 +598,7 @@ func (m *VarintPackedParticles) XXX_Marshal(b []byte, deterministic bool) ([]byt
 		return xxx_messageInfo_VarintPackedParticles.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
+		n, err := m.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
@@ -777,7 +778,7 @@ func (m *MCParameters) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return xxx_messageInfo_MCParameters.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
+		n, err := m.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
@@ -853,7 +854,7 @@ func (m *ArrayInt) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return xxx_messageInfo_ArrayInt.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
+		n, err := m.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
@@ -901,7 +902,7 @@ func (m *ArrayDouble) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) 
 		return xxx_messageInfo_ArrayDouble.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
+		n, err := m.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
@@ -966,7 +967,7 @@ func (m *Pythia8Parameters) XXX_Marshal(b []byte, deterministic bool) ([]byte, e
 		return xxx_messageInfo_Pythia8Parameters.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
+		n, err := m.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
@@ -1087,7 +1088,7 @@ func (m *XYZTF) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return xxx_messageInfo_XYZTF.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
+		n, err := m.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
@@ -1158,7 +1159,7 @@ func (m *XYZTI) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return xxx_messageInfo_XYZTI.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
+		n, err := m.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
@@ -1228,7 +1229,7 @@ func (m *XYZF) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return xxx_messageInfo_XYZF.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
+		n, err := m.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
@@ -1291,7 +1292,7 @@ func (m *XYZI) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return xxx_messageInfo_XYZI.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
-		n, err := m.MarshalTo(b)
+		n, err := m.MarshalToSizedBuffer(b)
 		if err != nil {
 			return nil, err
 		}
@@ -1419,7 +1420,7 @@ var fileDescriptor_787330611fe93f0d = []byte{
 func (m *Particle) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -1427,101 +1428,111 @@ func (m *Particle) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *Particle) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Particle) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Parent) > 0 {
-		for _, num := range m.Parent {
-			dAtA[i] = 0x8
-			i++
-			i = encodeVarintMc(dAtA, i, uint64(num))
-		}
-	}
-	if len(m.Child) > 0 {
-		for _, num := range m.Child {
-			dAtA[i] = 0x10
-			i++
-			i = encodeVarintMc(dAtA, i, uint64(num))
-		}
-	}
-	if m.Pdg != nil {
-		dAtA[i] = 0x18
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Pdg)<<1)^uint32((*m.Pdg>>31))))
-	}
-	if m.Vertex != nil {
-		dAtA[i] = 0x22
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(m.Vertex.Size()))
-		n1, err1 := m.Vertex.MarshalTo(dAtA[i:])
-		if err1 != nil {
-			return 0, err1
-		}
-		i += n1
-	}
-	if m.P != nil {
-		dAtA[i] = 0x2a
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(m.P.Size()))
-		n2, err2 := m.P.MarshalTo(dAtA[i:])
-		if err2 != nil {
-			return 0, err2
-		}
-		i += n2
-	}
-	if m.Energy != nil {
-		dAtA[i] = 0x35
-		i++
-		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.Energy))))
-		i += 4
-	}
-	if m.Mass != nil {
-		dAtA[i] = 0x3d
-		i++
-		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.Mass))))
-		i += 4
-	}
-	if m.Charge != nil {
-		dAtA[i] = 0x40
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Charge)<<1)^uint32((*m.Charge>>31))))
-	}
-	if m.SpinSint32 != nil {
-		dAtA[i] = 0x48
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.SpinSint32)<<1)^uint32((*m.SpinSint32>>31))))
-	}
-	if m.Status != nil {
-		dAtA[i] = 0x50
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Status)<<1)^uint32((*m.Status>>31))))
-	}
-	if m.Barcode != nil {
-		dAtA[i] = 0x58
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Barcode)<<1)^uint32((*m.Barcode>>31))))
-	}
-	if m.Id != nil {
-		dAtA[i] = 0x60
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(*m.Id))
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	if m.Spin != nil {
-		dAtA[i] = 0x68
-		i++
 		i = encodeVarintMc(dAtA, i, uint64(*m.Spin))
+		i--
+		dAtA[i] = 0x68
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+	if m.Id != nil {
+		i = encodeVarintMc(dAtA, i, uint64(*m.Id))
+		i--
+		dAtA[i] = 0x60
 	}
-	return i, nil
+	if m.Barcode != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Barcode)<<1)^uint32((*m.Barcode>>31))))
+		i--
+		dAtA[i] = 0x58
+	}
+	if m.Status != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Status)<<1)^uint32((*m.Status>>31))))
+		i--
+		dAtA[i] = 0x50
+	}
+	if m.SpinSint32 != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.SpinSint32)<<1)^uint32((*m.SpinSint32>>31))))
+		i--
+		dAtA[i] = 0x48
+	}
+	if m.Charge != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Charge)<<1)^uint32((*m.Charge>>31))))
+		i--
+		dAtA[i] = 0x40
+	}
+	if m.Mass != nil {
+		i -= 4
+		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.Mass))))
+		i--
+		dAtA[i] = 0x3d
+	}
+	if m.Energy != nil {
+		i -= 4
+		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.Energy))))
+		i--
+		dAtA[i] = 0x35
+	}
+	if m.P != nil {
+		{
+			size, err := m.P.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintMc(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x2a
+	}
+	if m.Vertex != nil {
+		{
+			size, err := m.Vertex.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintMc(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x22
+	}
+	if m.Pdg != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Pdg)<<1)^uint32((*m.Pdg>>31))))
+		i--
+		dAtA[i] = 0x18
+	}
+	if len(m.Child) > 0 {
+		for iNdEx := len(m.Child) - 1; iNdEx >= 0; iNdEx-- {
+			i = encodeVarintMc(dAtA, i, uint64(m.Child[iNdEx]))
+			i--
+			dAtA[i] = 0x10
+		}
+	}
+	if len(m.Parent) > 0 {
+		for iNdEx := len(m.Parent) - 1; iNdEx >= 0; iNdEx-- {
+			i = encodeVarintMc(dAtA, i, uint64(m.Parent[iNdEx]))
+			i--
+			dAtA[i] = 0x8
+		}
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *PackedParticles) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -1529,284 +1540,299 @@ func (m *PackedParticles) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *PackedParticles) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PackedParticles) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Id) > 0 {
-		dAtA4 := make([]byte, len(m.Id)*10)
-		var j3 int
-		for _, num := range m.Id {
-			for num >= 1<<7 {
-				dAtA4[j3] = uint8(uint64(num)&0x7f | 0x80)
-				num >>= 7
-				j3++
-			}
-			dAtA4[j3] = uint8(num)
-			j3++
-		}
-		dAtA[i] = 0xa
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j3))
-		i += copy(dAtA[i:], dAtA4[:j3])
-	}
-	if len(m.Pdg) > 0 {
-		dAtA5 := make([]byte, len(m.Pdg)*5)
-		var j6 int
-		for _, num := range m.Pdg {
-			x7 := (uint32(num) << 1) ^ uint32((num >> 31))
-			for x7 >= 1<<7 {
-				dAtA5[j6] = uint8(uint64(x7)&0x7f | 0x80)
-				j6++
-				x7 >>= 7
-			}
-			dAtA5[j6] = uint8(x7)
-			j6++
-		}
-		dAtA[i] = 0x12
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j6))
-		i += copy(dAtA[i:], dAtA5[:j6])
-	}
-	if len(m.Status) > 0 {
-		dAtA9 := make([]byte, len(m.Status)*10)
-		var j8 int
-		for _, num := range m.Status {
-			for num >= 1<<7 {
-				dAtA9[j8] = uint8(uint64(num)&0x7f | 0x80)
-				num >>= 7
-				j8++
-			}
-			dAtA9[j8] = uint8(num)
-			j8++
-		}
-		dAtA[i] = 0x1a
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j8))
-		i += copy(dAtA[i:], dAtA9[:j8])
-	}
-	if len(m.Mass) > 0 {
-		dAtA[i] = 0x22
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(len(m.Mass)*4))
-		for _, num := range m.Mass {
-			f10 := math.Float32bits(float32(num))
-			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f10))
-			i += 4
-		}
-	}
-	if len(m.Px) > 0 {
-		dAtA[i] = 0x2a
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(len(m.Px)*4))
-		for _, num := range m.Px {
-			f11 := math.Float32bits(float32(num))
-			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f11))
-			i += 4
-		}
-	}
-	if len(m.Py) > 0 {
-		dAtA[i] = 0x32
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(len(m.Py)*4))
-		for _, num := range m.Py {
-			f12 := math.Float32bits(float32(num))
-			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f12))
-			i += 4
-		}
-	}
-	if len(m.Pz) > 0 {
-		dAtA[i] = 0x3a
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(len(m.Pz)*4))
-		for _, num := range m.Pz {
-			f13 := math.Float32bits(float32(num))
-			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f13))
-			i += 4
-		}
-	}
-	if len(m.Parent1) > 0 {
-		dAtA15 := make([]byte, len(m.Parent1)*10)
-		var j14 int
-		for _, num := range m.Parent1 {
-			for num >= 1<<7 {
-				dAtA15[j14] = uint8(uint64(num)&0x7f | 0x80)
-				num >>= 7
-				j14++
-			}
-			dAtA15[j14] = uint8(num)
-			j14++
-		}
-		dAtA[i] = 0x42
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j14))
-		i += copy(dAtA[i:], dAtA15[:j14])
-	}
-	if len(m.Parent2) > 0 {
-		dAtA17 := make([]byte, len(m.Parent2)*10)
-		var j16 int
-		for _, num := range m.Parent2 {
-			for num >= 1<<7 {
-				dAtA17[j16] = uint8(uint64(num)&0x7f | 0x80)
-				num >>= 7
-				j16++
-			}
-			dAtA17[j16] = uint8(num)
-			j16++
-		}
-		dAtA[i] = 0x4a
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j16))
-		i += copy(dAtA[i:], dAtA17[:j16])
-	}
-	if len(m.Child1) > 0 {
-		dAtA19 := make([]byte, len(m.Child1)*10)
-		var j18 int
-		for _, num := range m.Child1 {
-			for num >= 1<<7 {
-				dAtA19[j18] = uint8(uint64(num)&0x7f | 0x80)
-				num >>= 7
-				j18++
-			}
-			dAtA19[j18] = uint8(num)
-			j18++
-		}
-		dAtA[i] = 0x52
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j18))
-		i += copy(dAtA[i:], dAtA19[:j18])
-	}
-	if len(m.Child2) > 0 {
-		dAtA21 := make([]byte, len(m.Child2)*10)
-		var j20 int
-		for _, num := range m.Child2 {
-			for num >= 1<<7 {
-				dAtA21[j20] = uint8(uint64(num)&0x7f | 0x80)
-				num >>= 7
-				j20++
-			}
-			dAtA21[j20] = uint8(num)
-			j20++
-		}
-		dAtA[i] = 0x5a
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j20))
-		i += copy(dAtA[i:], dAtA21[:j20])
-	}
-	if len(m.Barcode) > 0 {
-		dAtA22 := make([]byte, len(m.Barcode)*5)
-		var j23 int
-		for _, num := range m.Barcode {
-			x24 := (uint32(num) << 1) ^ uint32((num >> 31))
-			for x24 >= 1<<7 {
-				dAtA22[j23] = uint8(uint64(x24)&0x7f | 0x80)
-				j23++
-				x24 >>= 7
-			}
-			dAtA22[j23] = uint8(x24)
-			j23++
-		}
-		dAtA[i] = 0x62
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j23))
-		i += copy(dAtA[i:], dAtA22[:j23])
-	}
-	if len(m.X) > 0 {
-		dAtA[i] = 0x6a
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(len(m.X)*4))
-		for _, num := range m.X {
-			f25 := math.Float32bits(float32(num))
-			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f25))
-			i += 4
-		}
-	}
-	if len(m.Y) > 0 {
-		dAtA[i] = 0x72
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(len(m.Y)*4))
-		for _, num := range m.Y {
-			f26 := math.Float32bits(float32(num))
-			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f26))
-			i += 4
-		}
-	}
-	if len(m.Z) > 0 {
-		dAtA[i] = 0x7a
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(len(m.Z)*4))
-		for _, num := range m.Z {
-			f27 := math.Float32bits(float32(num))
-			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f27))
-			i += 4
-		}
-	}
-	if len(m.T) > 0 {
-		dAtA[i] = 0x82
-		i++
-		dAtA[i] = 0x1
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(len(m.T)*4))
-		for _, num := range m.T {
-			f28 := math.Float32bits(float32(num))
-			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f28))
-			i += 4
-		}
-	}
-	if len(m.Weight) > 0 {
-		dAtA[i] = 0x8a
-		i++
-		dAtA[i] = 0x1
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(len(m.Weight)*4))
-		for _, num := range m.Weight {
-			f29 := math.Float32bits(float32(num))
-			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f29))
-			i += 4
-		}
-	}
-	if len(m.Charge) > 0 {
-		dAtA30 := make([]byte, len(m.Charge)*5)
-		var j31 int
-		for _, num := range m.Charge {
-			x32 := (uint32(num) << 1) ^ uint32((num >> 31))
-			for x32 >= 1<<7 {
-				dAtA30[j31] = uint8(uint64(x32)&0x7f | 0x80)
-				j31++
-				x32 >>= 7
-			}
-			dAtA30[j31] = uint8(x32)
-			j31++
-		}
-		dAtA[i] = 0x92
-		i++
-		dAtA[i] = 0x1
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j31))
-		i += copy(dAtA[i:], dAtA30[:j31])
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	if len(m.Energy) > 0 {
-		dAtA[i] = 0x9a
-		i++
-		dAtA[i] = 0x1
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(len(m.Energy)*4))
-		for _, num := range m.Energy {
-			f33 := math.Float32bits(float32(num))
-			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f33))
-			i += 4
+		for iNdEx := len(m.Energy) - 1; iNdEx >= 0; iNdEx-- {
+			f3 := math.Float32bits(float32(m.Energy[iNdEx]))
+			i -= 4
+			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f3))
 		}
+		i = encodeVarintMc(dAtA, i, uint64(len(m.Energy)*4))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x9a
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+	if len(m.Charge) > 0 {
+		dAtA4 := make([]byte, len(m.Charge)*5)
+		var j5 int
+		for _, num := range m.Charge {
+			x6 := (uint32(num) << 1) ^ uint32((num >> 31))
+			for x6 >= 1<<7 {
+				dAtA4[j5] = uint8(uint64(x6)&0x7f | 0x80)
+				j5++
+				x6 >>= 7
+			}
+			dAtA4[j5] = uint8(x6)
+			j5++
+		}
+		i -= j5
+		copy(dAtA[i:], dAtA4[:j5])
+		i = encodeVarintMc(dAtA, i, uint64(j5))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x92
 	}
-	return i, nil
+	if len(m.Weight) > 0 {
+		for iNdEx := len(m.Weight) - 1; iNdEx >= 0; iNdEx-- {
+			f7 := math.Float32bits(float32(m.Weight[iNdEx]))
+			i -= 4
+			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f7))
+		}
+		i = encodeVarintMc(dAtA, i, uint64(len(m.Weight)*4))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x8a
+	}
+	if len(m.T) > 0 {
+		for iNdEx := len(m.T) - 1; iNdEx >= 0; iNdEx-- {
+			f8 := math.Float32bits(float32(m.T[iNdEx]))
+			i -= 4
+			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f8))
+		}
+		i = encodeVarintMc(dAtA, i, uint64(len(m.T)*4))
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x82
+	}
+	if len(m.Z) > 0 {
+		for iNdEx := len(m.Z) - 1; iNdEx >= 0; iNdEx-- {
+			f9 := math.Float32bits(float32(m.Z[iNdEx]))
+			i -= 4
+			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f9))
+		}
+		i = encodeVarintMc(dAtA, i, uint64(len(m.Z)*4))
+		i--
+		dAtA[i] = 0x7a
+	}
+	if len(m.Y) > 0 {
+		for iNdEx := len(m.Y) - 1; iNdEx >= 0; iNdEx-- {
+			f10 := math.Float32bits(float32(m.Y[iNdEx]))
+			i -= 4
+			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f10))
+		}
+		i = encodeVarintMc(dAtA, i, uint64(len(m.Y)*4))
+		i--
+		dAtA[i] = 0x72
+	}
+	if len(m.X) > 0 {
+		for iNdEx := len(m.X) - 1; iNdEx >= 0; iNdEx-- {
+			f11 := math.Float32bits(float32(m.X[iNdEx]))
+			i -= 4
+			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f11))
+		}
+		i = encodeVarintMc(dAtA, i, uint64(len(m.X)*4))
+		i--
+		dAtA[i] = 0x6a
+	}
+	if len(m.Barcode) > 0 {
+		dAtA12 := make([]byte, len(m.Barcode)*5)
+		var j13 int
+		for _, num := range m.Barcode {
+			x14 := (uint32(num) << 1) ^ uint32((num >> 31))
+			for x14 >= 1<<7 {
+				dAtA12[j13] = uint8(uint64(x14)&0x7f | 0x80)
+				j13++
+				x14 >>= 7
+			}
+			dAtA12[j13] = uint8(x14)
+			j13++
+		}
+		i -= j13
+		copy(dAtA[i:], dAtA12[:j13])
+		i = encodeVarintMc(dAtA, i, uint64(j13))
+		i--
+		dAtA[i] = 0x62
+	}
+	if len(m.Child2) > 0 {
+		dAtA16 := make([]byte, len(m.Child2)*10)
+		var j15 int
+		for _, num := range m.Child2 {
+			for num >= 1<<7 {
+				dAtA16[j15] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j15++
+			}
+			dAtA16[j15] = uint8(num)
+			j15++
+		}
+		i -= j15
+		copy(dAtA[i:], dAtA16[:j15])
+		i = encodeVarintMc(dAtA, i, uint64(j15))
+		i--
+		dAtA[i] = 0x5a
+	}
+	if len(m.Child1) > 0 {
+		dAtA18 := make([]byte, len(m.Child1)*10)
+		var j17 int
+		for _, num := range m.Child1 {
+			for num >= 1<<7 {
+				dAtA18[j17] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j17++
+			}
+			dAtA18[j17] = uint8(num)
+			j17++
+		}
+		i -= j17
+		copy(dAtA[i:], dAtA18[:j17])
+		i = encodeVarintMc(dAtA, i, uint64(j17))
+		i--
+		dAtA[i] = 0x52
+	}
+	if len(m.Parent2) > 0 {
+		dAtA20 := make([]byte, len(m.Parent2)*10)
+		var j19 int
+		for _, num := range m.Parent2 {
+			for num >= 1<<7 {
+				dAtA20[j19] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j19++
+			}
+			dAtA20[j19] = uint8(num)
+			j19++
+		}
+		i -= j19
+		copy(dAtA[i:], dAtA20[:j19])
+		i = encodeVarintMc(dAtA, i, uint64(j19))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if len(m.Parent1) > 0 {
+		dAtA22 := make([]byte, len(m.Parent1)*10)
+		var j21 int
+		for _, num := range m.Parent1 {
+			for num >= 1<<7 {
+				dAtA22[j21] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j21++
+			}
+			dAtA22[j21] = uint8(num)
+			j21++
+		}
+		i -= j21
+		copy(dAtA[i:], dAtA22[:j21])
+		i = encodeVarintMc(dAtA, i, uint64(j21))
+		i--
+		dAtA[i] = 0x42
+	}
+	if len(m.Pz) > 0 {
+		for iNdEx := len(m.Pz) - 1; iNdEx >= 0; iNdEx-- {
+			f23 := math.Float32bits(float32(m.Pz[iNdEx]))
+			i -= 4
+			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f23))
+		}
+		i = encodeVarintMc(dAtA, i, uint64(len(m.Pz)*4))
+		i--
+		dAtA[i] = 0x3a
+	}
+	if len(m.Py) > 0 {
+		for iNdEx := len(m.Py) - 1; iNdEx >= 0; iNdEx-- {
+			f24 := math.Float32bits(float32(m.Py[iNdEx]))
+			i -= 4
+			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f24))
+		}
+		i = encodeVarintMc(dAtA, i, uint64(len(m.Py)*4))
+		i--
+		dAtA[i] = 0x32
+	}
+	if len(m.Px) > 0 {
+		for iNdEx := len(m.Px) - 1; iNdEx >= 0; iNdEx-- {
+			f25 := math.Float32bits(float32(m.Px[iNdEx]))
+			i -= 4
+			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f25))
+		}
+		i = encodeVarintMc(dAtA, i, uint64(len(m.Px)*4))
+		i--
+		dAtA[i] = 0x2a
+	}
+	if len(m.Mass) > 0 {
+		for iNdEx := len(m.Mass) - 1; iNdEx >= 0; iNdEx-- {
+			f26 := math.Float32bits(float32(m.Mass[iNdEx]))
+			i -= 4
+			encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(f26))
+		}
+		i = encodeVarintMc(dAtA, i, uint64(len(m.Mass)*4))
+		i--
+		dAtA[i] = 0x22
+	}
+	if len(m.Status) > 0 {
+		dAtA28 := make([]byte, len(m.Status)*10)
+		var j27 int
+		for _, num := range m.Status {
+			for num >= 1<<7 {
+				dAtA28[j27] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j27++
+			}
+			dAtA28[j27] = uint8(num)
+			j27++
+		}
+		i -= j27
+		copy(dAtA[i:], dAtA28[:j27])
+		i = encodeVarintMc(dAtA, i, uint64(j27))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Pdg) > 0 {
+		dAtA29 := make([]byte, len(m.Pdg)*5)
+		var j30 int
+		for _, num := range m.Pdg {
+			x31 := (uint32(num) << 1) ^ uint32((num >> 31))
+			for x31 >= 1<<7 {
+				dAtA29[j30] = uint8(uint64(x31)&0x7f | 0x80)
+				j30++
+				x31 >>= 7
+			}
+			dAtA29[j30] = uint8(x31)
+			j30++
+		}
+		i -= j30
+		copy(dAtA[i:], dAtA29[:j30])
+		i = encodeVarintMc(dAtA, i, uint64(j30))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Id) > 0 {
+		dAtA33 := make([]byte, len(m.Id)*10)
+		var j32 int
+		for _, num := range m.Id {
+			for num >= 1<<7 {
+				dAtA33[j32] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j32++
+			}
+			dAtA33[j32] = uint8(num)
+			j32++
+		}
+		i -= j32
+		copy(dAtA[i:], dAtA33[:j32])
+		i = encodeVarintMc(dAtA, i, uint64(j32))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *VarintParticle) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -1814,99 +1840,109 @@ func (m *VarintParticle) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *VarintParticle) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *VarintParticle) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Parent) > 0 {
-		for _, num := range m.Parent {
-			dAtA[i] = 0x8
-			i++
-			i = encodeVarintMc(dAtA, i, uint64(num))
-		}
-	}
-	if len(m.Child) > 0 {
-		for _, num := range m.Child {
-			dAtA[i] = 0x10
-			i++
-			i = encodeVarintMc(dAtA, i, uint64(num))
-		}
-	}
-	if m.Pdg != nil {
-		dAtA[i] = 0x18
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Pdg)<<1)^uint32((*m.Pdg>>31))))
-	}
-	if m.Vertex != nil {
-		dAtA[i] = 0x22
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(m.Vertex.Size()))
-		n34, err34 := m.Vertex.MarshalTo(dAtA[i:])
-		if err34 != nil {
-			return 0, err34
-		}
-		i += n34
-	}
-	if m.P != nil {
-		dAtA[i] = 0x2a
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(m.P.Size()))
-		n35, err35 := m.P.MarshalTo(dAtA[i:])
-		if err35 != nil {
-			return 0, err35
-		}
-		i += n35
-	}
-	if m.Energy != nil {
-		dAtA[i] = 0x30
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(*m.Energy))
-	}
-	if m.Mass != nil {
-		dAtA[i] = 0x38
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(*m.Mass))
-	}
-	if m.Charge != nil {
-		dAtA[i] = 0x40
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Charge)<<1)^uint32((*m.Charge>>31))))
-	}
-	if m.SpinSint32 != nil {
-		dAtA[i] = 0x48
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.SpinSint32)<<1)^uint32((*m.SpinSint32>>31))))
-	}
-	if m.Status != nil {
-		dAtA[i] = 0x50
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Status)<<1)^uint32((*m.Status>>31))))
-	}
-	if m.Barcode != nil {
-		dAtA[i] = 0x58
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Barcode)<<1)^uint32((*m.Barcode>>31))))
-	}
-	if m.Id != nil {
-		dAtA[i] = 0x60
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(*m.Id))
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	if m.Spin != nil {
-		dAtA[i] = 0x68
-		i++
 		i = encodeVarintMc(dAtA, i, uint64(*m.Spin))
+		i--
+		dAtA[i] = 0x68
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+	if m.Id != nil {
+		i = encodeVarintMc(dAtA, i, uint64(*m.Id))
+		i--
+		dAtA[i] = 0x60
 	}
-	return i, nil
+	if m.Barcode != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Barcode)<<1)^uint32((*m.Barcode>>31))))
+		i--
+		dAtA[i] = 0x58
+	}
+	if m.Status != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Status)<<1)^uint32((*m.Status>>31))))
+		i--
+		dAtA[i] = 0x50
+	}
+	if m.SpinSint32 != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.SpinSint32)<<1)^uint32((*m.SpinSint32>>31))))
+		i--
+		dAtA[i] = 0x48
+	}
+	if m.Charge != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Charge)<<1)^uint32((*m.Charge>>31))))
+		i--
+		dAtA[i] = 0x40
+	}
+	if m.Mass != nil {
+		i = encodeVarintMc(dAtA, i, uint64(*m.Mass))
+		i--
+		dAtA[i] = 0x38
+	}
+	if m.Energy != nil {
+		i = encodeVarintMc(dAtA, i, uint64(*m.Energy))
+		i--
+		dAtA[i] = 0x30
+	}
+	if m.P != nil {
+		{
+			size, err := m.P.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintMc(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x2a
+	}
+	if m.Vertex != nil {
+		{
+			size, err := m.Vertex.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintMc(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x22
+	}
+	if m.Pdg != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint32(*m.Pdg)<<1)^uint32((*m.Pdg>>31))))
+		i--
+		dAtA[i] = 0x18
+	}
+	if len(m.Child) > 0 {
+		for iNdEx := len(m.Child) - 1; iNdEx >= 0; iNdEx-- {
+			i = encodeVarintMc(dAtA, i, uint64(m.Child[iNdEx]))
+			i--
+			dAtA[i] = 0x10
+		}
+	}
+	if len(m.Parent) > 0 {
+		for iNdEx := len(m.Parent) - 1; iNdEx >= 0; iNdEx-- {
+			i = encodeVarintMc(dAtA, i, uint64(m.Parent[iNdEx]))
+			i--
+			dAtA[i] = 0x8
+		}
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *VarintPackedParticles) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -1914,14 +1950,23 @@ func (m *VarintPackedParticles) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *VarintPackedParticles) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Id) > 0 {
-		dAtA37 := make([]byte, len(m.Id)*10)
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	if len(m.Energy) > 0 {
+		dAtA37 := make([]byte, len(m.Energy)*10)
 		var j36 int
-		for _, num := range m.Id {
+		for _, num := range m.Energy {
 			for num >= 1<<7 {
 				dAtA37[j36] = uint8(uint64(num)&0x7f | 0x80)
 				num >>= 7
@@ -1930,15 +1975,18 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA37[j36] = uint8(num)
 			j36++
 		}
-		dAtA[i] = 0xa
-		i++
+		i -= j36
+		copy(dAtA[i:], dAtA37[:j36])
 		i = encodeVarintMc(dAtA, i, uint64(j36))
-		i += copy(dAtA[i:], dAtA37[:j36])
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x9a
 	}
-	if len(m.Pdg) > 0 {
-		dAtA38 := make([]byte, len(m.Pdg)*5)
+	if len(m.Charge) > 0 {
+		dAtA38 := make([]byte, len(m.Charge)*5)
 		var j39 int
-		for _, num := range m.Pdg {
+		for _, num := range m.Charge {
 			x40 := (uint32(num) << 1) ^ uint32((num >> 31))
 			for x40 >= 1<<7 {
 				dAtA38[j39] = uint8(uint64(x40)&0x7f | 0x80)
@@ -1948,15 +1996,18 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA38[j39] = uint8(x40)
 			j39++
 		}
-		dAtA[i] = 0x12
-		i++
+		i -= j39
+		copy(dAtA[i:], dAtA38[:j39])
 		i = encodeVarintMc(dAtA, i, uint64(j39))
-		i += copy(dAtA[i:], dAtA38[:j39])
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x92
 	}
-	if len(m.Status) > 0 {
-		dAtA42 := make([]byte, len(m.Status)*10)
+	if len(m.Weight) > 0 {
+		dAtA42 := make([]byte, len(m.Weight)*10)
 		var j41 int
-		for _, num := range m.Status {
+		for _, num := range m.Weight {
 			for num >= 1<<7 {
 				dAtA42[j41] = uint8(uint64(num)&0x7f | 0x80)
 				num >>= 7
@@ -1965,15 +2016,18 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA42[j41] = uint8(num)
 			j41++
 		}
-		dAtA[i] = 0x1a
-		i++
+		i -= j41
+		copy(dAtA[i:], dAtA42[:j41])
 		i = encodeVarintMc(dAtA, i, uint64(j41))
-		i += copy(dAtA[i:], dAtA42[:j41])
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x8a
 	}
-	if len(m.Mass) > 0 {
-		dAtA44 := make([]byte, len(m.Mass)*10)
+	if len(m.T) > 0 {
+		dAtA44 := make([]byte, len(m.T)*10)
 		var j43 int
-		for _, num := range m.Mass {
+		for _, num := range m.T {
 			for num >= 1<<7 {
 				dAtA44[j43] = uint8(uint64(num)&0x7f | 0x80)
 				num >>= 7
@@ -1982,15 +2036,18 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA44[j43] = uint8(num)
 			j43++
 		}
-		dAtA[i] = 0x22
-		i++
+		i -= j43
+		copy(dAtA[i:], dAtA44[:j43])
 		i = encodeVarintMc(dAtA, i, uint64(j43))
-		i += copy(dAtA[i:], dAtA44[:j43])
+		i--
+		dAtA[i] = 0x1
+		i--
+		dAtA[i] = 0x82
 	}
-	if len(m.Px) > 0 {
+	if len(m.Z) > 0 {
 		var j45 int
-		dAtA47 := make([]byte, len(m.Px)*10)
-		for _, num := range m.Px {
+		dAtA47 := make([]byte, len(m.Z)*10)
+		for _, num := range m.Z {
 			x46 := (uint64(num) << 1) ^ uint64((num >> 63))
 			for x46 >= 1<<7 {
 				dAtA47[j45] = uint8(uint64(x46)&0x7f | 0x80)
@@ -2000,15 +2057,16 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA47[j45] = uint8(x46)
 			j45++
 		}
-		dAtA[i] = 0x2a
-		i++
+		i -= j45
+		copy(dAtA[i:], dAtA47[:j45])
 		i = encodeVarintMc(dAtA, i, uint64(j45))
-		i += copy(dAtA[i:], dAtA47[:j45])
+		i--
+		dAtA[i] = 0x7a
 	}
-	if len(m.Py) > 0 {
+	if len(m.Y) > 0 {
 		var j48 int
-		dAtA50 := make([]byte, len(m.Py)*10)
-		for _, num := range m.Py {
+		dAtA50 := make([]byte, len(m.Y)*10)
+		for _, num := range m.Y {
 			x49 := (uint64(num) << 1) ^ uint64((num >> 63))
 			for x49 >= 1<<7 {
 				dAtA50[j48] = uint8(uint64(x49)&0x7f | 0x80)
@@ -2018,15 +2076,16 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA50[j48] = uint8(x49)
 			j48++
 		}
-		dAtA[i] = 0x32
-		i++
+		i -= j48
+		copy(dAtA[i:], dAtA50[:j48])
 		i = encodeVarintMc(dAtA, i, uint64(j48))
-		i += copy(dAtA[i:], dAtA50[:j48])
+		i--
+		dAtA[i] = 0x72
 	}
-	if len(m.Pz) > 0 {
+	if len(m.X) > 0 {
 		var j51 int
-		dAtA53 := make([]byte, len(m.Pz)*10)
-		for _, num := range m.Pz {
+		dAtA53 := make([]byte, len(m.X)*10)
+		for _, num := range m.X {
 			x52 := (uint64(num) << 1) ^ uint64((num >> 63))
 			for x52 >= 1<<7 {
 				dAtA53[j51] = uint8(uint64(x52)&0x7f | 0x80)
@@ -2036,101 +2095,107 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA53[j51] = uint8(x52)
 			j51++
 		}
-		dAtA[i] = 0x3a
-		i++
+		i -= j51
+		copy(dAtA[i:], dAtA53[:j51])
 		i = encodeVarintMc(dAtA, i, uint64(j51))
-		i += copy(dAtA[i:], dAtA53[:j51])
-	}
-	if len(m.Parent1) > 0 {
-		dAtA55 := make([]byte, len(m.Parent1)*10)
-		var j54 int
-		for _, num := range m.Parent1 {
-			for num >= 1<<7 {
-				dAtA55[j54] = uint8(uint64(num)&0x7f | 0x80)
-				num >>= 7
-				j54++
-			}
-			dAtA55[j54] = uint8(num)
-			j54++
-		}
-		dAtA[i] = 0x42
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j54))
-		i += copy(dAtA[i:], dAtA55[:j54])
-	}
-	if len(m.Parent2) > 0 {
-		dAtA57 := make([]byte, len(m.Parent2)*10)
-		var j56 int
-		for _, num := range m.Parent2 {
-			for num >= 1<<7 {
-				dAtA57[j56] = uint8(uint64(num)&0x7f | 0x80)
-				num >>= 7
-				j56++
-			}
-			dAtA57[j56] = uint8(num)
-			j56++
-		}
-		dAtA[i] = 0x4a
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j56))
-		i += copy(dAtA[i:], dAtA57[:j56])
-	}
-	if len(m.Child1) > 0 {
-		dAtA59 := make([]byte, len(m.Child1)*10)
-		var j58 int
-		for _, num := range m.Child1 {
-			for num >= 1<<7 {
-				dAtA59[j58] = uint8(uint64(num)&0x7f | 0x80)
-				num >>= 7
-				j58++
-			}
-			dAtA59[j58] = uint8(num)
-			j58++
-		}
-		dAtA[i] = 0x52
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j58))
-		i += copy(dAtA[i:], dAtA59[:j58])
-	}
-	if len(m.Child2) > 0 {
-		dAtA61 := make([]byte, len(m.Child2)*10)
-		var j60 int
-		for _, num := range m.Child2 {
-			for num >= 1<<7 {
-				dAtA61[j60] = uint8(uint64(num)&0x7f | 0x80)
-				num >>= 7
-				j60++
-			}
-			dAtA61[j60] = uint8(num)
-			j60++
-		}
-		dAtA[i] = 0x5a
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(j60))
-		i += copy(dAtA[i:], dAtA61[:j60])
+		i--
+		dAtA[i] = 0x6a
 	}
 	if len(m.Barcode) > 0 {
-		dAtA62 := make([]byte, len(m.Barcode)*5)
-		var j63 int
+		dAtA54 := make([]byte, len(m.Barcode)*5)
+		var j55 int
 		for _, num := range m.Barcode {
-			x64 := (uint32(num) << 1) ^ uint32((num >> 31))
-			for x64 >= 1<<7 {
-				dAtA62[j63] = uint8(uint64(x64)&0x7f | 0x80)
-				j63++
-				x64 >>= 7
+			x56 := (uint32(num) << 1) ^ uint32((num >> 31))
+			for x56 >= 1<<7 {
+				dAtA54[j55] = uint8(uint64(x56)&0x7f | 0x80)
+				j55++
+				x56 >>= 7
 			}
-			dAtA62[j63] = uint8(x64)
+			dAtA54[j55] = uint8(x56)
+			j55++
+		}
+		i -= j55
+		copy(dAtA[i:], dAtA54[:j55])
+		i = encodeVarintMc(dAtA, i, uint64(j55))
+		i--
+		dAtA[i] = 0x62
+	}
+	if len(m.Child2) > 0 {
+		dAtA58 := make([]byte, len(m.Child2)*10)
+		var j57 int
+		for _, num := range m.Child2 {
+			for num >= 1<<7 {
+				dAtA58[j57] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j57++
+			}
+			dAtA58[j57] = uint8(num)
+			j57++
+		}
+		i -= j57
+		copy(dAtA[i:], dAtA58[:j57])
+		i = encodeVarintMc(dAtA, i, uint64(j57))
+		i--
+		dAtA[i] = 0x5a
+	}
+	if len(m.Child1) > 0 {
+		dAtA60 := make([]byte, len(m.Child1)*10)
+		var j59 int
+		for _, num := range m.Child1 {
+			for num >= 1<<7 {
+				dAtA60[j59] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j59++
+			}
+			dAtA60[j59] = uint8(num)
+			j59++
+		}
+		i -= j59
+		copy(dAtA[i:], dAtA60[:j59])
+		i = encodeVarintMc(dAtA, i, uint64(j59))
+		i--
+		dAtA[i] = 0x52
+	}
+	if len(m.Parent2) > 0 {
+		dAtA62 := make([]byte, len(m.Parent2)*10)
+		var j61 int
+		for _, num := range m.Parent2 {
+			for num >= 1<<7 {
+				dAtA62[j61] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j61++
+			}
+			dAtA62[j61] = uint8(num)
+			j61++
+		}
+		i -= j61
+		copy(dAtA[i:], dAtA62[:j61])
+		i = encodeVarintMc(dAtA, i, uint64(j61))
+		i--
+		dAtA[i] = 0x4a
+	}
+	if len(m.Parent1) > 0 {
+		dAtA64 := make([]byte, len(m.Parent1)*10)
+		var j63 int
+		for _, num := range m.Parent1 {
+			for num >= 1<<7 {
+				dAtA64[j63] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j63++
+			}
+			dAtA64[j63] = uint8(num)
 			j63++
 		}
-		dAtA[i] = 0x62
-		i++
+		i -= j63
+		copy(dAtA[i:], dAtA64[:j63])
 		i = encodeVarintMc(dAtA, i, uint64(j63))
-		i += copy(dAtA[i:], dAtA62[:j63])
+		i--
+		dAtA[i] = 0x42
 	}
-	if len(m.X) > 0 {
+	if len(m.Pz) > 0 {
 		var j65 int
-		dAtA67 := make([]byte, len(m.X)*10)
-		for _, num := range m.X {
+		dAtA67 := make([]byte, len(m.Pz)*10)
+		for _, num := range m.Pz {
 			x66 := (uint64(num) << 1) ^ uint64((num >> 63))
 			for x66 >= 1<<7 {
 				dAtA67[j65] = uint8(uint64(x66)&0x7f | 0x80)
@@ -2140,15 +2205,16 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA67[j65] = uint8(x66)
 			j65++
 		}
-		dAtA[i] = 0x6a
-		i++
+		i -= j65
+		copy(dAtA[i:], dAtA67[:j65])
 		i = encodeVarintMc(dAtA, i, uint64(j65))
-		i += copy(dAtA[i:], dAtA67[:j65])
+		i--
+		dAtA[i] = 0x3a
 	}
-	if len(m.Y) > 0 {
+	if len(m.Py) > 0 {
 		var j68 int
-		dAtA70 := make([]byte, len(m.Y)*10)
-		for _, num := range m.Y {
+		dAtA70 := make([]byte, len(m.Py)*10)
+		for _, num := range m.Py {
 			x69 := (uint64(num) << 1) ^ uint64((num >> 63))
 			for x69 >= 1<<7 {
 				dAtA70[j68] = uint8(uint64(x69)&0x7f | 0x80)
@@ -2158,15 +2224,16 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA70[j68] = uint8(x69)
 			j68++
 		}
-		dAtA[i] = 0x72
-		i++
+		i -= j68
+		copy(dAtA[i:], dAtA70[:j68])
 		i = encodeVarintMc(dAtA, i, uint64(j68))
-		i += copy(dAtA[i:], dAtA70[:j68])
+		i--
+		dAtA[i] = 0x32
 	}
-	if len(m.Z) > 0 {
+	if len(m.Px) > 0 {
 		var j71 int
-		dAtA73 := make([]byte, len(m.Z)*10)
-		for _, num := range m.Z {
+		dAtA73 := make([]byte, len(m.Px)*10)
+		for _, num := range m.Px {
 			x72 := (uint64(num) << 1) ^ uint64((num >> 63))
 			for x72 >= 1<<7 {
 				dAtA73[j71] = uint8(uint64(x72)&0x7f | 0x80)
@@ -2176,15 +2243,16 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA73[j71] = uint8(x72)
 			j71++
 		}
-		dAtA[i] = 0x7a
-		i++
+		i -= j71
+		copy(dAtA[i:], dAtA73[:j71])
 		i = encodeVarintMc(dAtA, i, uint64(j71))
-		i += copy(dAtA[i:], dAtA73[:j71])
+		i--
+		dAtA[i] = 0x2a
 	}
-	if len(m.T) > 0 {
-		dAtA75 := make([]byte, len(m.T)*10)
+	if len(m.Mass) > 0 {
+		dAtA75 := make([]byte, len(m.Mass)*10)
 		var j74 int
-		for _, num := range m.T {
+		for _, num := range m.Mass {
 			for num >= 1<<7 {
 				dAtA75[j74] = uint8(uint64(num)&0x7f | 0x80)
 				num >>= 7
@@ -2193,17 +2261,16 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA75[j74] = uint8(num)
 			j74++
 		}
-		dAtA[i] = 0x82
-		i++
-		dAtA[i] = 0x1
-		i++
+		i -= j74
+		copy(dAtA[i:], dAtA75[:j74])
 		i = encodeVarintMc(dAtA, i, uint64(j74))
-		i += copy(dAtA[i:], dAtA75[:j74])
+		i--
+		dAtA[i] = 0x22
 	}
-	if len(m.Weight) > 0 {
-		dAtA77 := make([]byte, len(m.Weight)*10)
+	if len(m.Status) > 0 {
+		dAtA77 := make([]byte, len(m.Status)*10)
 		var j76 int
-		for _, num := range m.Weight {
+		for _, num := range m.Status {
 			for num >= 1<<7 {
 				dAtA77[j76] = uint8(uint64(num)&0x7f | 0x80)
 				num >>= 7
@@ -2212,17 +2279,16 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA77[j76] = uint8(num)
 			j76++
 		}
-		dAtA[i] = 0x8a
-		i++
-		dAtA[i] = 0x1
-		i++
+		i -= j76
+		copy(dAtA[i:], dAtA77[:j76])
 		i = encodeVarintMc(dAtA, i, uint64(j76))
-		i += copy(dAtA[i:], dAtA77[:j76])
+		i--
+		dAtA[i] = 0x1a
 	}
-	if len(m.Charge) > 0 {
-		dAtA78 := make([]byte, len(m.Charge)*5)
+	if len(m.Pdg) > 0 {
+		dAtA78 := make([]byte, len(m.Pdg)*5)
 		var j79 int
-		for _, num := range m.Charge {
+		for _, num := range m.Pdg {
 			x80 := (uint32(num) << 1) ^ uint32((num >> 31))
 			for x80 >= 1<<7 {
 				dAtA78[j79] = uint8(uint64(x80)&0x7f | 0x80)
@@ -2232,17 +2298,16 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA78[j79] = uint8(x80)
 			j79++
 		}
-		dAtA[i] = 0x92
-		i++
-		dAtA[i] = 0x1
-		i++
+		i -= j79
+		copy(dAtA[i:], dAtA78[:j79])
 		i = encodeVarintMc(dAtA, i, uint64(j79))
-		i += copy(dAtA[i:], dAtA78[:j79])
+		i--
+		dAtA[i] = 0x12
 	}
-	if len(m.Energy) > 0 {
-		dAtA82 := make([]byte, len(m.Energy)*10)
+	if len(m.Id) > 0 {
+		dAtA82 := make([]byte, len(m.Id)*10)
 		var j81 int
-		for _, num := range m.Energy {
+		for _, num := range m.Id {
 			for num >= 1<<7 {
 				dAtA82[j81] = uint8(uint64(num)&0x7f | 0x80)
 				num >>= 7
@@ -2251,23 +2316,19 @@ func (m *VarintPackedParticles) MarshalTo(dAtA []byte) (int, error) {
 			dAtA82[j81] = uint8(num)
 			j81++
 		}
-		dAtA[i] = 0x9a
-		i++
-		dAtA[i] = 0x1
-		i++
+		i -= j81
+		copy(dAtA[i:], dAtA82[:j81])
 		i = encodeVarintMc(dAtA, i, uint64(j81))
-		i += copy(dAtA[i:], dAtA82[:j81])
+		i--
+		dAtA[i] = 0xa
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func (m *MCParameters) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -2275,92 +2336,94 @@ func (m *MCParameters) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *MCParameters) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MCParameters) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Number != nil {
-		dAtA[i] = 0x8
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(*m.Number))
-	}
-	if m.Processid != nil {
-		dAtA[i] = 0x10
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(*m.Processid))
-	}
-	if m.Weight != nil {
-		dAtA[i] = 0x19
-		i++
-		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.Weight))))
-		i += 8
-	}
-	if len(m.IntExtra) > 0 {
-		for k, _ := range m.IntExtra {
-			dAtA[i] = 0x22
-			i++
-			v := m.IntExtra[k]
-			msgSize := 0
-			if v != nil {
-				msgSize = v.Size()
-				msgSize += 1 + sovMc(uint64(msgSize))
-			}
-			mapSize := 1 + len(k) + sovMc(uint64(len(k))) + msgSize
-			i = encodeVarintMc(dAtA, i, uint64(mapSize))
-			dAtA[i] = 0xa
-			i++
-			i = encodeVarintMc(dAtA, i, uint64(len(k)))
-			i += copy(dAtA[i:], k)
-			if v != nil {
-				dAtA[i] = 0x12
-				i++
-				i = encodeVarintMc(dAtA, i, uint64(v.Size()))
-				n83, err83 := v.MarshalTo(dAtA[i:])
-				if err83 != nil {
-					return 0, err83
-				}
-				i += n83
-			}
-		}
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	if len(m.FloatExtra) > 0 {
-		for k, _ := range m.FloatExtra {
-			dAtA[i] = 0x2a
-			i++
+		for k := range m.FloatExtra {
 			v := m.FloatExtra[k]
-			msgSize := 0
+			baseI := i
 			if v != nil {
-				msgSize = v.Size()
-				msgSize += 1 + sovMc(uint64(msgSize))
-			}
-			mapSize := 1 + len(k) + sovMc(uint64(len(k))) + msgSize
-			i = encodeVarintMc(dAtA, i, uint64(mapSize))
-			dAtA[i] = 0xa
-			i++
-			i = encodeVarintMc(dAtA, i, uint64(len(k)))
-			i += copy(dAtA[i:], k)
-			if v != nil {
-				dAtA[i] = 0x12
-				i++
-				i = encodeVarintMc(dAtA, i, uint64(v.Size()))
-				n84, err84 := v.MarshalTo(dAtA[i:])
-				if err84 != nil {
-					return 0, err84
+				{
+					size, err := v.MarshalToSizedBuffer(dAtA[:i])
+					if err != nil {
+						return 0, err
+					}
+					i -= size
+					i = encodeVarintMc(dAtA, i, uint64(size))
 				}
-				i += n84
+				i--
+				dAtA[i] = 0x12
 			}
+			i -= len(k)
+			copy(dAtA[i:], k)
+			i = encodeVarintMc(dAtA, i, uint64(len(k)))
+			i--
+			dAtA[i] = 0xa
+			i = encodeVarintMc(dAtA, i, uint64(baseI-i))
+			i--
+			dAtA[i] = 0x2a
 		}
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+	if len(m.IntExtra) > 0 {
+		for k := range m.IntExtra {
+			v := m.IntExtra[k]
+			baseI := i
+			if v != nil {
+				{
+					size, err := v.MarshalToSizedBuffer(dAtA[:i])
+					if err != nil {
+						return 0, err
+					}
+					i -= size
+					i = encodeVarintMc(dAtA, i, uint64(size))
+				}
+				i--
+				dAtA[i] = 0x12
+			}
+			i -= len(k)
+			copy(dAtA[i:], k)
+			i = encodeVarintMc(dAtA, i, uint64(len(k)))
+			i--
+			dAtA[i] = 0xa
+			i = encodeVarintMc(dAtA, i, uint64(baseI-i))
+			i--
+			dAtA[i] = 0x22
+		}
 	}
-	return i, nil
+	if m.Weight != nil {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.Weight))))
+		i--
+		dAtA[i] = 0x19
+	}
+	if m.Processid != nil {
+		i = encodeVarintMc(dAtA, i, uint64(*m.Processid))
+		i--
+		dAtA[i] = 0x10
+	}
+	if m.Number != nil {
+		i = encodeVarintMc(dAtA, i, uint64(*m.Number))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *ArrayInt) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -2368,34 +2431,34 @@ func (m *ArrayInt) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *ArrayInt) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ArrayInt) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if len(m.Value) > 0 {
-		for _, num := range m.Value {
+		for iNdEx := len(m.Value) - 1; iNdEx >= 0; iNdEx-- {
+			x85 := (uint32(m.Value[iNdEx]) << 1) ^ uint32((m.Value[iNdEx] >> 31))
+			i = encodeVarintMc(dAtA, i, uint64(x85))
+			i--
 			dAtA[i] = 0x8
-			i++
-			x85 := (uint32(num) << 1) ^ uint32((num >> 31))
-			for x85 >= 1<<7 {
-				dAtA[i] = uint8(uint64(x85)&0x7f | 0x80)
-				x85 >>= 7
-				i++
-			}
-			dAtA[i] = uint8(x85)
-			i++
 		}
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func (m *ArrayDouble) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -2403,29 +2466,35 @@ func (m *ArrayDouble) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *ArrayDouble) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ArrayDouble) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
+	}
 	if len(m.Value) > 0 {
-		for _, num := range m.Value {
-			dAtA[i] = 0x9
-			i++
-			f86 := math.Float64bits(float64(num))
+		for iNdEx := len(m.Value) - 1; iNdEx >= 0; iNdEx-- {
+			f86 := math.Float64bits(float64(m.Value[iNdEx]))
+			i -= 8
 			encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(f86))
-			i += 8
+			i--
+			dAtA[i] = 0x9
 		}
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return i, nil
+	return len(dAtA) - i, nil
 }
 
 func (m *Pythia8Parameters) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -2433,84 +2502,90 @@ func (m *Pythia8Parameters) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *Pythia8Parameters) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Pythia8Parameters) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.WeightSum != nil {
-		dAtA[i] = 0x9
-		i++
-		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.WeightSum))))
-		i += 8
-	}
-	if m.MergingWeight != nil {
-		dAtA[i] = 0x11
-		i++
-		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.MergingWeight))))
-		i += 8
-	}
-	if m.PtHat != nil {
-		dAtA[i] = 0x19
-		i++
-		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.PtHat))))
-		i += 8
-	}
-	if m.AlphaEm != nil {
-		dAtA[i] = 0x21
-		i++
-		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.AlphaEm))))
-		i += 8
-	}
-	if m.AlphaS != nil {
-		dAtA[i] = 0x29
-		i++
-		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.AlphaS))))
-		i += 8
-	}
-	if m.ScaleQFac != nil {
-		dAtA[i] = 0x31
-		i++
-		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.ScaleQFac))))
-		i += 8
-	}
-	if m.Weight != nil {
-		dAtA[i] = 0x39
-		i++
-		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.Weight))))
-		i += 8
-	}
-	if m.X1 != nil {
-		dAtA[i] = 0x41
-		i++
-		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.X1))))
-		i += 8
-	}
-	if m.X2 != nil {
-		dAtA[i] = 0x49
-		i++
-		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.X2))))
-		i += 8
-	}
-	if m.Id1 != nil {
-		dAtA[i] = 0x50
-		i++
-		i = encodeVarintMc(dAtA, i, uint64(*m.Id1))
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	if m.Id2 != nil {
-		dAtA[i] = 0x58
-		i++
 		i = encodeVarintMc(dAtA, i, uint64(*m.Id2))
+		i--
+		dAtA[i] = 0x58
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+	if m.Id1 != nil {
+		i = encodeVarintMc(dAtA, i, uint64(*m.Id1))
+		i--
+		dAtA[i] = 0x50
 	}
-	return i, nil
+	if m.X2 != nil {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.X2))))
+		i--
+		dAtA[i] = 0x49
+	}
+	if m.X1 != nil {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.X1))))
+		i--
+		dAtA[i] = 0x41
+	}
+	if m.Weight != nil {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.Weight))))
+		i--
+		dAtA[i] = 0x39
+	}
+	if m.ScaleQFac != nil {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.ScaleQFac))))
+		i--
+		dAtA[i] = 0x31
+	}
+	if m.AlphaS != nil {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.AlphaS))))
+		i--
+		dAtA[i] = 0x29
+	}
+	if m.AlphaEm != nil {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.AlphaEm))))
+		i--
+		dAtA[i] = 0x21
+	}
+	if m.PtHat != nil {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.PtHat))))
+		i--
+		dAtA[i] = 0x19
+	}
+	if m.MergingWeight != nil {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.MergingWeight))))
+		i--
+		dAtA[i] = 0x11
+	}
+	if m.WeightSum != nil {
+		i -= 8
+		encoding_binary.LittleEndian.PutUint64(dAtA[i:], uint64(math.Float64bits(float64(*m.WeightSum))))
+		i--
+		dAtA[i] = 0x9
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *XYZTF) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -2518,44 +2593,50 @@ func (m *XYZTF) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *XYZTF) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *XYZTF) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.X != nil {
-		dAtA[i] = 0xd
-		i++
-		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.X))))
-		i += 4
-	}
-	if m.Y != nil {
-		dAtA[i] = 0x15
-		i++
-		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.Y))))
-		i += 4
-	}
-	if m.Z != nil {
-		dAtA[i] = 0x1d
-		i++
-		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.Z))))
-		i += 4
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	if m.T != nil {
-		dAtA[i] = 0x25
-		i++
+		i -= 4
 		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.T))))
-		i += 4
+		i--
+		dAtA[i] = 0x25
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+	if m.Z != nil {
+		i -= 4
+		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.Z))))
+		i--
+		dAtA[i] = 0x1d
 	}
-	return i, nil
+	if m.Y != nil {
+		i -= 4
+		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.Y))))
+		i--
+		dAtA[i] = 0x15
+	}
+	if m.X != nil {
+		i -= 4
+		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.X))))
+		i--
+		dAtA[i] = 0xd
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *XYZTI) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -2563,40 +2644,46 @@ func (m *XYZTI) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *XYZTI) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *XYZTI) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.X != nil {
-		dAtA[i] = 0x8
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint64(*m.X)<<1)^uint64((*m.X>>63))))
-	}
-	if m.Y != nil {
-		dAtA[i] = 0x10
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint64(*m.Y)<<1)^uint64((*m.Y>>63))))
-	}
-	if m.Z != nil {
-		dAtA[i] = 0x18
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint64(*m.Z)<<1)^uint64((*m.Z>>63))))
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	if m.T != nil {
-		dAtA[i] = 0x20
-		i++
 		i = encodeVarintMc(dAtA, i, uint64(*m.T))
+		i--
+		dAtA[i] = 0x20
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+	if m.Z != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint64(*m.Z)<<1)^uint64((*m.Z>>63))))
+		i--
+		dAtA[i] = 0x18
 	}
-	return i, nil
+	if m.Y != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint64(*m.Y)<<1)^uint64((*m.Y>>63))))
+		i--
+		dAtA[i] = 0x10
+	}
+	if m.X != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint64(*m.X)<<1)^uint64((*m.X>>63))))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *XYZF) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -2604,38 +2691,44 @@ func (m *XYZF) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *XYZF) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *XYZF) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.X != nil {
-		dAtA[i] = 0xd
-		i++
-		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.X))))
-		i += 4
-	}
-	if m.Y != nil {
-		dAtA[i] = 0x15
-		i++
-		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.Y))))
-		i += 4
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	if m.Z != nil {
-		dAtA[i] = 0x1d
-		i++
+		i -= 4
 		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.Z))))
-		i += 4
+		i--
+		dAtA[i] = 0x1d
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+	if m.Y != nil {
+		i -= 4
+		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.Y))))
+		i--
+		dAtA[i] = 0x15
 	}
-	return i, nil
+	if m.X != nil {
+		i -= 4
+		encoding_binary.LittleEndian.PutUint32(dAtA[i:], uint32(math.Float32bits(float32(*m.X))))
+		i--
+		dAtA[i] = 0xd
+	}
+	return len(dAtA) - i, nil
 }
 
 func (m *XYZI) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
-	n, err := m.MarshalTo(dAtA)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
 	if err != nil {
 		return nil, err
 	}
@@ -2643,39 +2736,47 @@ func (m *XYZI) Marshal() (dAtA []byte, err error) {
 }
 
 func (m *XYZI) MarshalTo(dAtA []byte) (int, error) {
-	var i int
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *XYZI) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.X != nil {
-		dAtA[i] = 0x8
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint64(*m.X)<<1)^uint64((*m.X>>63))))
-	}
-	if m.Y != nil {
-		dAtA[i] = 0x10
-		i++
-		i = encodeVarintMc(dAtA, i, uint64((uint64(*m.Y)<<1)^uint64((*m.Y>>63))))
+	if m.XXX_unrecognized != nil {
+		i -= len(m.XXX_unrecognized)
+		copy(dAtA[i:], m.XXX_unrecognized)
 	}
 	if m.Z != nil {
-		dAtA[i] = 0x18
-		i++
 		i = encodeVarintMc(dAtA, i, uint64((uint64(*m.Z)<<1)^uint64((*m.Z>>63))))
+		i--
+		dAtA[i] = 0x18
 	}
-	if m.XXX_unrecognized != nil {
-		i += copy(dAtA[i:], m.XXX_unrecognized)
+	if m.Y != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint64(*m.Y)<<1)^uint64((*m.Y>>63))))
+		i--
+		dAtA[i] = 0x10
 	}
-	return i, nil
+	if m.X != nil {
+		i = encodeVarintMc(dAtA, i, uint64((uint64(*m.X)<<1)^uint64((*m.X>>63))))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
 }
 
 func encodeVarintMc(dAtA []byte, offset int, v uint64) int {
+	offset -= sovMc(v)
+	base := offset
 	for v >= 1<<7 {
 		dAtA[offset] = uint8(v&0x7f | 0x80)
 		v >>= 7
 		offset++
 	}
 	dAtA[offset] = uint8(v)
-	return offset + 1
+	return base
 }
 func (m *Particle) Size() (n int) {
 	if m == nil {
@@ -3256,14 +3357,7 @@ func (m *XYZI) Size() (n int) {
 }
 
 func sovMc(x uint64) (n int) {
-	for {
-		n++
-		x >>= 7
-		if x == 0 {
-			break
-		}
-	}
-	return n
+	return (math_bits.Len64(x|1) + 6) / 7
 }
 func sozMc(x uint64) (n int) {
 	return sovMc(uint64((x << 1) ^ uint64((int64(x) >> 63))))
@@ -8239,6 +8333,7 @@ func (m *XYZI) Unmarshal(dAtA []byte) error {
 func skipMc(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0
+	depth := 0
 	for iNdEx < l {
 		var wire uint64
 		for shift := uint(0); ; shift += 7 {
@@ -8270,10 +8365,8 @@ func skipMc(dAtA []byte) (n int, err error) {
 					break
 				}
 			}
-			return iNdEx, nil
 		case 1:
 			iNdEx += 8
-			return iNdEx, nil
 		case 2:
 			var length int
 			for shift := uint(0); ; shift += 7 {
@@ -8294,55 +8387,30 @@ func skipMc(dAtA []byte) (n int, err error) {
 				return 0, ErrInvalidLengthMc
 			}
 			iNdEx += length
-			if iNdEx < 0 {
-				return 0, ErrInvalidLengthMc
-			}
-			return iNdEx, nil
 		case 3:
-			for {
-				var innerWire uint64
-				var start int = iNdEx
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return 0, ErrIntOverflowMc
-					}
-					if iNdEx >= l {
-						return 0, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					innerWire |= (uint64(b) & 0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				innerWireType := int(innerWire & 0x7)
-				if innerWireType == 4 {
-					break
-				}
-				next, err := skipMc(dAtA[start:])
-				if err != nil {
-					return 0, err
-				}
-				iNdEx = start + next
-				if iNdEx < 0 {
-					return 0, ErrInvalidLengthMc
-				}
-			}
-			return iNdEx, nil
+			depth++
 		case 4:
-			return iNdEx, nil
+			if depth == 0 {
+				return 0, ErrUnexpectedEndOfGroupMc
+			}
+			depth--
 		case 5:
 			iNdEx += 4
-			return iNdEx, nil
 		default:
 			return 0, fmt.Errorf("proto: illegal wireType %d", wireType)
 		}
+		if iNdEx < 0 {
+			return 0, ErrInvalidLengthMc
+		}
+		if depth == 0 {
+			return iNdEx, nil
+		}
 	}
-	panic("unreachable")
+	return 0, io.ErrUnexpectedEOF
 }
 
 var (
-	ErrInvalidLengthMc = fmt.Errorf("proto: negative length found during unmarshaling")
-	ErrIntOverflowMc   = fmt.Errorf("proto: integer overflow")
+	ErrInvalidLengthMc        = fmt.Errorf("proto: negative length found during unmarshaling")
+	ErrIntOverflowMc          = fmt.Errorf("proto: integer overflow")
+	ErrUnexpectedEndOfGroupMc = fmt.Errorf("proto: unexpected end of group")
 )
